@@ -18,18 +18,14 @@ import gov.usgs.cida.wqp.mapping.ColumnProfile;
 public class ActivityWqx extends BaseWqx implements IXmlMapping {
 
 	public static final Map<String, String> HARD_BREAK = new LinkedHashMap<>();
-
 	public static final Map<String, List<String>> COLUMN_POSITION = new LinkedHashMap<>();
-	
 	public static final Map<String, List<ColumnProfile>> GROUPING = new LinkedHashMap<>();
 
-	
 	static {
 		HARD_BREAK.put(KEY_ORGANIZATION, ROOT_NODE);
 		HARD_BREAK.put(KEY_ACTIVITY, WQX_ORGANIZATION);
 	}
-	
-	
+
 	static {
 		COLUMN_POSITION.put(KEY_ORGANIZATION,
 				new LinkedList<String>(Arrays.asList(
@@ -41,7 +37,6 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						WQX_ORGANIZATION,
 						WQX_ORGANIZATION_DESCRIPTION,
 						WQX_ORGANIZATION_FORMAL_NAME)));
-		
 		COLUMN_POSITION.put(KEY_ACTIVITY,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
@@ -101,8 +96,6 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						WQX_ACTIVITY,
 						WQX_ACT_DESCRIPTION,
 						WQX_ACT_RELATIVE_DEPTH)));
-
-		
 		COLUMN_POSITION.put(KEY_ACTIVITY_DEPTH,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
@@ -179,7 +172,6 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						WQX_ACTIVITY,
 						WQX_ACT_DESCRIPTION,
 						WQX_HYDROLOGIC_EVENT)));
-
 		COLUMN_POSITION.put(KEY_ACTIVITY_LATITUDE,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
@@ -217,7 +209,6 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						WQX_ACTIVITY,
 						WQX_ACT_LOCATION,
 						WQX_HORIZONTAL_DATUM)));
-
 		COLUMN_POSITION.put(KEY_ASSEMBLAGE_SAMPLED_NAME,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
@@ -359,8 +350,6 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						WQX_ACTIVITY,
 						WQX_BIO_ACT_DESCRIPTION,
 						WQX_TOXICITY_TEST_TYPE)));
-		
-
 		COLUMN_POSITION.put(KEY_SAMPLE_COLLECT_METHOD_ID,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
@@ -391,20 +380,16 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						WQX_SAMPLE_DESCRIPTION,
 						WQX_COLLECTION_METHOD,
 						WQX_METHOD_DESCRIPTION)));
-		
-		
 		COLUMN_POSITION.put(KEY_SAMPLE_COLLECT_EQUIP_NAME,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
 						WQX_SAMPLE_DESCRIPTION,
 						WQX_COLLECTION_EQUIPMENT)));
-
 		COLUMN_POSITION.put(KEY_ACT_SAM_COLLECT_EQUIP_COMMENTS,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
 						WQX_SAMPLE_DESCRIPTION,
 						WQX_COLLECTION_EQUIPMENT_COMMENT)));
-		
 		COLUMN_POSITION.put(KEY_ACT_SAM_PREP_METH_ID,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
@@ -470,6 +455,10 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						WQX_SAMPLE_DESCRIPTION,
 						WQX_SAMPLE_PREPARATION,
 						WQX_TRANSPORT_STORAGE)));
+		COLUMN_POSITION.put(KEY_ACTIVITY_ID,
+				new LinkedList<String>(Arrays.asList(
+						WQX_ACTIVITY,
+						WQX_ACT_METRIC_URL)));
 	}
 
 	static {
@@ -561,7 +550,8 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						ACTIVITY_METRIC_UNIT,
 						ACTIVITY_METRIC_SCORE,
 						ACTIVITY_METRIC_COMMENT,
-						INDEX_IDENTIFIER
+						INDEX_IDENTIFIER,
+						ACTIVITY_ID
 						)));
 	}
 
@@ -580,5 +570,4 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 	public Map<String, List<ColumnProfile>> getGrouping() {
 		return GROUPING;
 	}
-
 }

@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class MapToKmlTransformer extends MapToXmlTransformer {
 
 	public MapToKmlTransformer(OutputStream target, IXmlMapping mapping, ILogService logService, BigDecimal logId, String profile) {
-		super(target, mapping, logService, logId, profile);
+		super(target, mapping, logService, logId, profile, null);
 	}
 
 	@Override

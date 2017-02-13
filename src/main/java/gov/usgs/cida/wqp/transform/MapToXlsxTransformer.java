@@ -1,8 +1,5 @@
 package gov.usgs.cida.wqp.transform;
 
-import gov.usgs.cida.wqp.service.ILogService;
-import gov.usgs.cida.wqp.util.HttpConstants;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,6 +16,10 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import gov.usgs.cida.wqp.mapping.ActivityColumn;
+import gov.usgs.cida.wqp.service.ILogService;
+import gov.usgs.cida.wqp.util.HttpConstants;
 
 public class MapToXlsxTransformer extends Transformer {
 
@@ -43,8 +44,11 @@ public class MapToXlsxTransformer extends Transformer {
 	/** Default output buffer size. */
 	private static final int DEFAULT_BUFFER_SIZE = 1024;
 
-	public MapToXlsxTransformer(OutputStream target, Map<String, String> mapping, ILogService logService, BigDecimal logId) {
+	private final String siteUrlBase;
+
+	public MapToXlsxTransformer(OutputStream target, Map<String, String> mapping, ILogService logService, BigDecimal logId, String siteUrlBase) {
 		super(target, mapping, logService, logId);
+		this.siteUrlBase = siteUrlBase;
 		init();
 	}
 
@@ -129,6 +133,9 @@ public class MapToXlsxTransformer extends Transformer {
 				Object obj = result.get(column);
 				if (obj instanceof BigDecimal) {
 					createCell(cellCount, ((BigDecimal) obj).doubleValue());
+				} else if (column.equals(ActivityColumn.KEY_ACTIVITY_ID)) {
+					String value = siteUrlBase + HttpConstants.ACTIVITY_METRIC_REST_ENPOINT.replace("{activity}", obj.toString());
+					createCell(cellCount, value);
 				} else {
 					createCell(cellCount, obj.toString());
 				}

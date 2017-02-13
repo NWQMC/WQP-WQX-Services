@@ -97,6 +97,8 @@ public abstract class BaseWqx {
 	public static final String WQX_SAMPLE_AQUIFER = "SampleAquifer";
 	public static final String WQX_HYDROLOGIC_CONDITION = "HydrologicCondition";
 	public static final String WQX_HYDROLOGIC_EVENT = "HydrologicEvent";
+	
+	public static final String WQX_ACT_METRIC_URL = "ActivityMetricURL";
 
 	public static final String WQX_ACT_LOCATION = "ActivityLocation";
 	

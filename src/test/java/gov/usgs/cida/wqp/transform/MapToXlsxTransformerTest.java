@@ -30,16 +30,16 @@ import org.mockito.MockitoAnnotations;
 public class MapToXlsxTransformerTest {
 
 	@Mock
-    protected ILogService logService;
+	protected ILogService logService;
 	protected BigDecimal logId = new BigDecimal(1);
 	private int rowCount = 1;
 	protected MapToXlsxTransformer transformer;
 	protected ByteArrayOutputStream baos;
 	protected Map<String, String> mapping;
 
-    @Before
-    public void initTest() {
-        MockitoAnnotations.initMocks(this);
+	@Before
+	public void initTest() {
+		MockitoAnnotations.initMocks(this);
 		baos = new ByteArrayOutputStream();
 		mapping = new LinkedHashMap<>();
 		mapping.put("A", "colA");
@@ -48,13 +48,14 @@ public class MapToXlsxTransformerTest {
 		mapping.put("D", "colD");
 		mapping.put("E", "colE");
 		mapping.put("F", "colF");
-        transformer = new MapToXlsxTransformer(baos, mapping, logService, logId);
-    }
+		mapping.put("ACTIVITY_ID", "ActMetURL");
+		transformer = new MapToXlsxTransformer(baos, mapping, logService, logId, "ROOTURL");
+	}
 
-    @After
-    public void closeTest() throws IOException {
-    	transformer.close();
-    }
+	@After
+	public void closeTest() throws IOException {
+		transformer.close();
+	}
 
 	@Test
 	public void writeTest() {
@@ -86,6 +87,8 @@ public class MapToXlsxTransformerTest {
 					break;
 				case "colF":
 					break;
+				case "ActMetURL":
+					break;
 				default:
 					fail(c.getStringCellValue() + " is not valid");
 				}
@@ -99,7 +102,7 @@ public class MapToXlsxTransformerTest {
 				y.next();
 				i++;
 			}
-			assertEquals(6, i);
+			assertEquals(7, i);
 			assertEquals("data1", row1.getCell(0).getStringCellValue());
 			assertEquals("data2", row1.getCell(1).getStringCellValue());
 			assertEquals("1", row1.getCell(2).getStringCellValue());
@@ -107,11 +110,11 @@ public class MapToXlsxTransformerTest {
 			assertEquals("Wed Dec 31 18:00:10 CST 1969", row1.getCell(3).getStringCellValue());
 			assertNull(row1.getCell(4));
 			assertEquals(29382.2398, row1.getCell(5).getNumericCellValue(), 0);
+			assertEquals("Was expecting something more from you.", "ROOTURL/activities/1234/activitymetrics", row1.getCell(6).getStringCellValue());
 		} catch (IOException e) {
 			fail(e.getLocalizedMessage());
 		}
 	}
-	
 	
 	@Test
 	public void bunchOfRows() {
@@ -147,6 +150,7 @@ public class MapToXlsxTransformerTest {
 		record.put("E", null);
 		record.put("F", new BigDecimal(29382.2398));
 		record.put("G", "nocando");
+		record.put("ACTIVITY_ID", 1234);
 
 		return record;
 	}
@@ -156,5 +160,4 @@ public class MapToXlsxTransformerTest {
 		//should not fail with NullPointerException without any data having been written
 		transformer.end();
 	}
-
 }

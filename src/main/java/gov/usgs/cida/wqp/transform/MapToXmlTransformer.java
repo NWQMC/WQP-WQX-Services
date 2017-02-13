@@ -14,9 +14,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import gov.usgs.cida.wqp.mapping.ActivityColumn;
 import gov.usgs.cida.wqp.mapping.ColumnProfile;
 import gov.usgs.cida.wqp.mapping.xml.IXmlMapping;
 import gov.usgs.cida.wqp.service.ILogService;
+import gov.usgs.cida.wqp.util.HttpConstants;
 
 public class MapToXmlTransformer extends Transformer {
 
@@ -30,9 +32,12 @@ public class MapToXmlTransformer extends Transformer {
 	protected final String header;
 	protected final String profile;
 
-	public MapToXmlTransformer(OutputStream target, IXmlMapping mapping, ILogService logService, BigDecimal logId, String profile) {
+	private final String siteUrlBase;
+
+	public MapToXmlTransformer(OutputStream target, IXmlMapping mapping, ILogService logService, BigDecimal logId, String profile, String siteUrlBase) {
 		super(target, null, logService, logId);
 		fieldMapping = mapping;
+		this.siteUrlBase = siteUrlBase;
 		this.header = XmlConstants.XML_HEADER + fieldMapping.getHeader();
 		hardBreaks = new LinkedHashMap<>();
 		for (String key : fieldMapping.getHardBreak().keySet()) {
@@ -104,6 +109,9 @@ public class MapToXmlTransformer extends Transformer {
 				nodes.push(node);
 			}
 			lNode = node;
+		}
+		if (key.equals(ActivityColumn.KEY_ACTIVITY_ID)) {
+			val = siteUrlBase + HttpConstants.ACTIVITY_METRIC_REST_ENPOINT.replace("{activity}", val);
 		}
 		sb.append(val);
 		sb.append(getClosingNodeText(nodes.pop()));

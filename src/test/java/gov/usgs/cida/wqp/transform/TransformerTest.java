@@ -123,7 +123,7 @@ public class TransformerTest {
 	@Test
 	public void copyStringTest() {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		MapToDelimitedTransformer transformer = new MapToDelimitedTransformer(baos, new HashMap<String, String>(), logService, logId, ",");
+		MapToDelimitedTransformer transformer = new MapToDelimitedTransformer(baos, new HashMap<String, String>(), logService, logId, ",", "");
 		try {
 			transformer.writeToStream(null);
 			assertEquals(0, baos.size());

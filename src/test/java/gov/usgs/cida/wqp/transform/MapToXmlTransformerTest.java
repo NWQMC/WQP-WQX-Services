@@ -37,7 +37,7 @@ public class MapToXmlTransformerTest {
 	public void initTest() {
 		MockitoAnnotations.initMocks(this);
 		baos = new ByteArrayOutputStream();
-		transformer = new MapToXmlTransformer(baos, fieldMapping, logService, logId, Profile.STATION);
+		transformer = new MapToXmlTransformer(baos, fieldMapping, logService, logId, Profile.STATION, "");
 	}
 
 	@After
@@ -107,7 +107,7 @@ public class MapToXmlTransformerTest {
 
 	@Test
 	public void doGroupingSimpleStationTest() throws IOException {
-		MapToXmlTransformer bt = new MapToXmlTransformer(baos, fieldMapping, logService, logId, Profile.SIMPLE_STATION);
+		MapToXmlTransformer bt = new MapToXmlTransformer(baos, fieldMapping, logService, logId, Profile.SIMPLE_STATION, "");
 		StringBuilder sb = new StringBuilder();
 		Map<String, Object> map = new HashMap<>();
 		map.put(StationColumn.KEY_LONGITUDE, "23jk<h4kl213");

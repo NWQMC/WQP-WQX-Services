@@ -3,6 +3,9 @@ package gov.usgs.cida.wqp.transform;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import gov.usgs.cida.wqp.mapping.ActivityColumn;
+import gov.usgs.cida.wqp.mapping.delimited.ActivityDelimited;
 import gov.usgs.cida.wqp.service.ILogService;
 
 import java.io.ByteArrayOutputStream;
@@ -19,6 +22,7 @@ import org.mockito.MockitoAnnotations;
 
 public class MapToDelimitedTransformerTest {
 
+	private static final String HTTP_ROOT_URL = "http://rootURL";
 	public static final String CSV_HEADER = "colA,colB";
 	public static final String TSV_HEADER = "colA\tcolB";
 
@@ -42,10 +46,49 @@ public class MapToDelimitedTransformerTest {
 	public void closeTest() throws IOException {
 		transformer.close();
 	}
+	
+	@Test
+	public void testActivityMetricURLCSV() {
+		mapping.put(ActivityColumn.KEY_ACTIVITY_ID, ActivityDelimited.VALUE_ACT_METRIC_URL);
+		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",", HTTP_ROOT_URL);
+
+		Map<String, Object> result = new HashMap<>();
+		result.put(ActivityColumn.KEY_ACTIVITY_ID, "1234");
+		result.put("A", "1");
+		result.put("B", "2");
+		
+		try {
+			transformer.write(result);
+			assertEquals(78, baos.size());
+			assertEquals(CSV_HEADER + "," + ActivityDelimited.VALUE_ACT_METRIC_URL + "\n1,2," + HTTP_ROOT_URL + "/activities/1234/activitymetrics", new String(baos.toByteArray(), "UTF-8"));
+		} catch (IOException e) {
+			fail(e.getLocalizedMessage());
+		}
+	}
+	
+	@Test
+	public void testActivityMetricURLTSV() {
+		mapping.put(ActivityColumn.KEY_ACTIVITY_ID, ActivityDelimited.VALUE_ACT_METRIC_URL);
+		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, "\t", HTTP_ROOT_URL);
+
+		Map<String, Object> result = new HashMap<>();
+		result.put(ActivityColumn.KEY_ACTIVITY_ID, "1234");
+		result.put("A", "1");
+		result.put("B", "2");
+		
+		try {
+			transformer.write(result);
+			assertEquals(78, baos.size());
+			assertEquals(TSV_HEADER + "\t" + ActivityDelimited.VALUE_ACT_METRIC_URL + "\n1\t2\t" + HTTP_ROOT_URL + "/activities/1234/activitymetrics", new String(baos.toByteArray(), "UTF-8"));
+
+		} catch (IOException e) {
+			fail(e.getLocalizedMessage());
+		}
+	}
 
 	@Test
 	public void writeDataTest() {
-		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",");
+		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",", "");
 		Map<String, Object> result = new HashMap<>();
 		result.put("A", "1");
 		result.put("B", "2");
@@ -70,7 +113,7 @@ public class MapToDelimitedTransformerTest {
 
 	@Test
 	public void writeDataMapTest() {
-		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, "\t");
+		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, "\t", "");
 		Map<String, Object> result = new HashMap<>();
 		result.put("A", "1\r\n\t");
 		result.put("B", "2");
@@ -97,7 +140,7 @@ public class MapToDelimitedTransformerTest {
 			assertEquals("\n\t2", new String(baos.toByteArray(), "UTF-8"));
 			transformer.close();
 
-			transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",");
+			transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",", "");
 			baos.reset();
 			result.clear();
 			result.put("A", "b,1");
@@ -121,7 +164,7 @@ public class MapToDelimitedTransformerTest {
 
 	@Test
 	public void writeHeaderTest() {
-		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",");
+		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",", "");
 		try {
 			assertEquals(9, baos.size());
 			assertEquals(CSV_HEADER, new String(baos.toByteArray(), "UTF-8"));
