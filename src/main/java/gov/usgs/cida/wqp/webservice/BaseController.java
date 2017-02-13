@@ -507,11 +507,11 @@ public abstract class BaseController {
 			transformer = new MapToKmlTransformer(responseStream, getKmlMapping(), logService, logId, getProfile());
 			break;
 		case tsv:
-			transformer = new MapToDelimitedTransformer(responseStream, getMapping(getProfile()), logService, logId, MapToDelimitedTransformer.TAB);
+			transformer = new MapToDelimitedTransformer(responseStream, getMapping(getProfile()), logService, logId, MapToDelimitedTransformer.TAB, siteUrlBase);
 			break;
 		case csv:
 		default:
-			transformer = new MapToDelimitedTransformer(responseStream, getMapping(getProfile()), logService, logId, MapToDelimitedTransformer.COMMA);
+			transformer = new MapToDelimitedTransformer(responseStream, getMapping(getProfile()), logService, logId, MapToDelimitedTransformer.COMMA, siteUrlBase);
 			break;
 		}
 		return transformer;

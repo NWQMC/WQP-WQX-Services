@@ -45,7 +45,7 @@ public class MapToDelimitedTransformerTest {
 
 	@Test
 	public void writeDataTest() {
-		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",");
+		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",", "");
 		Map<String, Object> result = new HashMap<>();
 		result.put("A", "1");
 		result.put("B", "2");
@@ -70,7 +70,7 @@ public class MapToDelimitedTransformerTest {
 
 	@Test
 	public void writeDataMapTest() {
-		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, "\t");
+		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, "\t", "");
 		Map<String, Object> result = new HashMap<>();
 		result.put("A", "1\r\n\t");
 		result.put("B", "2");
@@ -97,7 +97,7 @@ public class MapToDelimitedTransformerTest {
 			assertEquals("\n\t2", new String(baos.toByteArray(), "UTF-8"));
 			transformer.close();
 
-			transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",");
+			transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",", "");
 			baos.reset();
 			result.clear();
 			result.put("A", "b,1");
@@ -121,7 +121,7 @@ public class MapToDelimitedTransformerTest {
 
 	@Test
 	public void writeHeaderTest() {
-		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",");
+		transformer = new MapToDelimitedTransformer(baos, mapping, logService, logId, ",", "");
 		try {
 			assertEquals(9, baos.size());
 			assertEquals(CSV_HEADER, new String(baos.toByteArray(), "UTF-8"));
