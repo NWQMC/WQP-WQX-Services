@@ -3,7 +3,7 @@
 
 	<groupId>gov.usgs.cida.wqp</groupId>
 	<artifactId>wqp</artifactId>
-	<version>0.8-SNAPSHOT</version>
+	<version>0.8</version>
 	<packaging>war</packaging>
 
 	<name>wqpgateway</name>
@@ -258,7 +258,7 @@
 		<connection>scm:git:https://github.com/NWQMC/WQP-WQX-Services.git</connection>
 		<developerConnection>scm:git:git@github.com:NWQMC/WQP-WQX-Services.git</developerConnection>
 		<url>https://github.com/NWQMC/WQP-WQX-Services</url>
-		<tag>HEAD</tag>
+		<tag>wqp-0.8</tag>
 	</scm>
 
 <!-- ==================================================================================================================== -->
