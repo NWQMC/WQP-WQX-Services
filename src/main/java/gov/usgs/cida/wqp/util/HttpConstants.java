@@ -9,6 +9,7 @@ public class HttpConstants {
 	public static final String ENDPOINT_ACTIVITY_METRIC = "ActivityMetric";
 	public static final String ENDPOINT_RESULT = "Result";
 	public static final String ENDPOINT_STATION = "Station";
+	public static final String ENDPOINT_PROJECT = "Project";
 	public static final String ENDPOINT_SIMPLE_STATION = "simplestation";
 	public static final String ENPOINT_SEARCH = "/search";
 	public static final String ENDPOINT_RES_DETECT_QNT_LMT = "ResultDetectionQuantitationLimit";
@@ -49,6 +50,9 @@ public class HttpConstants {
 
 	public static final String HEADER_RES_DETECT_QNT_LMT_COUNT = ENDPOINT_RES_DETECT_QNT_LMT + HEADER_DELIMITER + HEADER_COUNT;
 	public static final String HEADER_TOTAL_RES_DETECT_QNT_LMT_COUNT = HEADER_TOTAL + HEADER_DELIMITER + HEADER_RES_DETECT_QNT_LMT_COUNT;
+	
+	public static final String HEADER_PROJECT_COUNT = ENDPOINT_PROJECT + HEADER_DELIMITER + HEADER_COUNT;
+	public static final String HEADER_TOTAL_PROJECT_COUNT = HEADER_TOTAL + HEADER_DELIMITER + HEADER_PROJECT_COUNT;
 
 	public static final String MIME_TYPE_ZIP  = "application/zip";
 	public static final String MIME_TYPE_CSV  = "text/csv";
