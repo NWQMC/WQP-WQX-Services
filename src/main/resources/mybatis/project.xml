@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project">
 
-	<select id="select" resultType="java.util.LinkedHashMap" resultOrdered="true" fetchSize="500">
+	<select id="select" resultType="java.util.LinkedHashMap" fetchSize="500">
 		select prime.data_source_id,
 		       prime.data_source,
 		       prime.organization,
@@ -15,6 +15,7 @@
 		       prime.qapp_approved_agency_name,
 		       prime.project_file_url,
 		       prime.monitoring_location_weight_url
+       <include refid="dynamicWhere.projectsBase"/>
 	       order by prime.data_source_id,
 	       			prime.organization,
 	       			prime.project_identifier
