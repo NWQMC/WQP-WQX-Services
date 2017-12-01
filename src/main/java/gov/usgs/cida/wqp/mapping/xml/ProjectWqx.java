@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import gov.usgs.cida.wqp.mapping.ColumnProfile;
 
+@Component
 public class ProjectWqx extends BaseWqx implements IXmlMapping {
 	
 	public static final Map<String, String> HARD_BREAK = new LinkedHashMap<>();
