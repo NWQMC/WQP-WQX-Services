@@ -3,5 +3,11 @@
 
 <mapper namespace="dynamicWhere">
 	<sql id="baseWhereProjectClauses">
+		<if test="organization != null">
+			and (<include refid="dynamicWhere.organization" />)
+		</if>
+		<if test="providers != null">
+			and (<include refid="dynamicWhere.providers" />)
+		</if>
 	</sql>
 </mapper>
