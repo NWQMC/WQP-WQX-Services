@@ -8,11 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationStrategy;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,12 +38,18 @@ produces={HttpConstants.MIME_TYPE_TSV,
 		HttpConstants.MIME_TYPE_XLSX,
 		HttpConstants.MIME_TYPE_XML})
 public class ProjectController extends BaseController {
-
+	
+	protected final IXmlMapping xmlMapping;
+	
+	@Autowired
 	public ProjectController(IStreamingDao inStreamingDao, ICountDao inCountDao, IParameterHandler inParameterHandler,
-			ILogService inLogService, Integer inMaxResultRows, String inSiteUrlBase,
+			ILogService inLogService, 
+			@Qualifier("maxResultRows") Integer inMaxResultRows,
+			@Qualifier("projectWqx") IXmlMapping inXmlMapping,
+			@Qualifier("siteUrlBase") String inSiteUrlBase,
 			ContentNegotiationStrategy inContentStrategy) {
 		super(inStreamingDao, inCountDao, inParameterHandler, inLogService, inMaxResultRows, inSiteUrlBase, inContentStrategy);
-		// TODO Auto-generated constructor stub
+		xmlMapping = inXmlMapping;
 	}
 	
 	@ApiOperation(value="Return appropriate request headers (including anticipated record counts).")
@@ -80,8 +83,7 @@ public class ProjectController extends BaseController {
 
 	@Override
 	protected IXmlMapping getXmlMapping() {
-		// TODO Auto-generated method stub
-		return null;
+		return xmlMapping;
 	}
 
 	@Override
