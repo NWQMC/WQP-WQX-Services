@@ -51,7 +51,6 @@ public class StationDelimited extends BaseDelimited {
 	public static final String VALUE_HOLE_DEPTH_VALUE = WQX_HOLE_DEPTH + VAL_DEL + WQX_MEASURE_VALUE;
 	public static final String VALUE_HOLE_DEPTH_UNIT = WQX_HOLE_DEPTH + VAL_DEL + WQX_MEASURE_UNIT;
 
-
 	public static final Map<ColumnProfile, String> MAPPINGS;
 	static {
 		MAPPINGS = new LinkedHashMap<ColumnProfile,String>();
