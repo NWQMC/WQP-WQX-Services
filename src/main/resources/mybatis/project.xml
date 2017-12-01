@@ -15,6 +15,9 @@
 		       prime.qapp_approved_agency_name,
 		       prime.project_file_url,
 		       prime.monitoring_location_weight_url
+	       order by prime.data_source_id,
+	       			prime.organization,
+	       			prime.project_identifier
 	</select>
 	
 	<sql id="projectCount">
