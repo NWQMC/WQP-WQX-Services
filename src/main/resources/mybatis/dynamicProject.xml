@@ -10,4 +10,7 @@
 			and (<include refid="dynamicWhere.providers" />)
 		</if>
 	</sql>
+	<sql id="projectsBase">
+		from project prime
+	</sql>
 </mapper>
