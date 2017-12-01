@@ -141,7 +141,7 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
 						WQX_ACT_DESCRIPTION,
-						WQX_PROJECT)));
+						WQX_PROJECT_IDENTIFIER)));
 		COLUMN_POSITION.put(KEY_ACTIVITY_CONDUCTING_ORG,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,

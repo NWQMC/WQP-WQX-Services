@@ -31,7 +31,7 @@ public class ActivityDelimited extends BaseDelimited {
 	public static final String VALUE_ACTIVITY_UPPER_DEPTH_UNIT = WQX_ACT_TOP_DEPTH + VAL_DEL + WQX_MEASURE_UNIT;
 	public static final String VALUE_ACTIVITY_LOWER_DEPTH = WQX_ACT_BOTTOM_DEPTH + VAL_DEL + WQX_MEASURE_VALUE;
 	public static final String VALUE_ACTIVITY_LOWER_DEPTH_UNIT = WQX_ACT_BOTTOM_DEPTH + VAL_DEL + WQX_MEASURE_UNIT;
-	public static final String VALUE_PROJECT_ID = WQX_PROJECT;
+	public static final String VALUE_PROJECT_ID = WQX_PROJECT_IDENTIFIER;
 	public static final String VALUE_ACTIVITY_CONDUCTING_ORG = WQX_ACT_CONDUCTION_ORG;
 	public static final String VALUE_ACTIVITY_COMMENT = WQX_ACT_COMMENT;
 	public static final String VALUE_SAMPLE_AQFR_NAME = WQX_SAMPLE_AQUIFER;

@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.usgs.cida.wqp.dao.intfc.ICountDao;
 import gov.usgs.cida.wqp.dao.intfc.IStreamingDao;
 import gov.usgs.cida.wqp.mapping.Profile;
-import gov.usgs.cida.wqp.mapping.delimited.ActivityDelimited;
+import gov.usgs.cida.wqp.mapping.delimited.ProjectDelimited;
 import gov.usgs.cida.wqp.mapping.xml.IXmlMapping;
 import gov.usgs.cida.wqp.parameter.IParameterHandler;
 import gov.usgs.cida.wqp.service.ILogService;
 import gov.usgs.cida.wqp.swagger.SwaggerConfig;
 import gov.usgs.cida.wqp.swagger.annotation.FullParameterList;
-import gov.usgs.cida.wqp.swagger.model.ActivityCountJson;
+import gov.usgs.cida.wqp.swagger.model.ProjectCountJson;
 import gov.usgs.cida.wqp.util.HttpConstants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -75,8 +75,7 @@ public class ProjectController extends BaseController {
 
 	@Override
 	protected Map<String, String> getMapping(Profile profile) {
-		// TODO Auto-generated method stub
-		return null;
+		return ProjectDelimited.getMapping(profile);
 	}
 
 	@Override
@@ -87,7 +86,6 @@ public class ProjectController extends BaseController {
 
 	@Override
 	protected IXmlMapping getKmlMapping() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
