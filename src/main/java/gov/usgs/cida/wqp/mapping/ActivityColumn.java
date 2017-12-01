@@ -22,7 +22,7 @@ public class ActivityColumn extends BaseColumn {
 	public static final String KEY_ACTIVITY_UPPER_DEPTH_UNIT = "ACTIVITY_UPPER_DEPTH_UNIT";
 	public static final String KEY_ACTIVITY_LOWER_DEPTH = "ACTIVITY_LOWER_DEPTH";
 	public static final String KEY_ACTIVITY_LOWER_DEPTH_UNIT = "ACTIVITY_LOWER_DEPTH_UNIT";
-	public static final String KEY_PROJECT_ID = "PROJECT_ID";
+	public static final String KEY_ACTIVITY_PROJECTS = "ACTIVITY_PROJECTS";
 	public static final String KEY_ACTIVITY_CONDUCTING_ORG = "ACTIVITY_CONDUCTING_ORG";
 	public static final String KEY_ACTIVITY_COMMENT = "ACTIVITY_COMMENT";
 	public static final String KEY_SAMPLE_AQFR_NAME = "SAMPLE_AQFR_NAME";
@@ -97,7 +97,7 @@ public class ActivityColumn extends BaseColumn {
 	public static final ColumnProfile ACTIVITY_UPPER_DEPTH_UNIT = new ColumnProfile(KEY_ACTIVITY_UPPER_DEPTH_UNIT, Profile.BIOLOGICAL, Profile.PC_RESULT, Profile.ACTIVITY);
 	public static final ColumnProfile ACTIVITY_LOWER_DEPTH = new ColumnProfile(KEY_ACTIVITY_LOWER_DEPTH, Profile.BIOLOGICAL, Profile.PC_RESULT, Profile.ACTIVITY);
 	public static final ColumnProfile ACTIVITY_LOWER_DEPTH_UNIT = new ColumnProfile(KEY_ACTIVITY_LOWER_DEPTH_UNIT, Profile.BIOLOGICAL, Profile.PC_RESULT, Profile.ACTIVITY);
-	public static final ColumnProfile PROJECT_ID = new ColumnProfile(KEY_PROJECT_ID, Profile.BIOLOGICAL, Profile.PC_RESULT, Profile.ACTIVITY);
+	public static final ColumnProfile ACTIVITY_PROJECTS = new ColumnProfile(KEY_ACTIVITY_PROJECTS, Profile.BIOLOGICAL, Profile.PC_RESULT, Profile.ACTIVITY);
 	public static final ColumnProfile ACTIVITY_CONDUCTING_ORG = new ColumnProfile(KEY_ACTIVITY_CONDUCTING_ORG, Profile.BIOLOGICAL, Profile.PC_RESULT, Profile.ACTIVITY);
 	public static final ColumnProfile ACTIVITY_COMMENT = new ColumnProfile(KEY_ACTIVITY_COMMENT, Profile.BIOLOGICAL, Profile.PC_RESULT, Profile.ACTIVITY);
 	public static final ColumnProfile SAMPLE_AQFR_NAME = new ColumnProfile(KEY_SAMPLE_AQFR_NAME, Profile.BIOLOGICAL, Profile.PC_RESULT, Profile.ACTIVITY);

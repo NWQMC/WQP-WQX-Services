@@ -3,10 +3,7 @@
 <mapper namespace="project">
 
 	<select id="select" resultType="java.util.LinkedHashMap" fetchSize="500">
-		select prime.data_source_id,
-		       prime.data_source,
-		       prime.organization,
-		       prime.organization_name,
+		select prime.project_id,
 		       prime.project_identifier,
 		       prime.project_name,
 		       prime.description,
@@ -18,7 +15,8 @@
        <include refid="dynamicWhere.projectsBase"/>
 	       order by prime.data_source_id,
 	       			prime.organization,
-	       			prime.project_identifier
+	       			prime.project_identifier,
+	       			prime.project_id
 	</select>
 	
 	<sql id="projectCount">

@@ -41,7 +41,7 @@ public class TestPcResultMap {
 		PC_RESULT.put(KEY_ACTIVITY_UPPER_DEPTH_UNIT, "activityUpperDepthUnit");
 		PC_RESULT.put(KEY_ACTIVITY_LOWER_DEPTH, "activityLowerDepth");
 		PC_RESULT.put(KEY_ACTIVITY_LOWER_DEPTH_UNIT, "activityLowerDepthUnit");
-		PC_RESULT.put(KEY_PROJECT_ID, "projectId");
+		PC_RESULT.put(KEY_ACTIVITY_PROJECTS, "projectId");
 		PC_RESULT.put(KEY_ACTIVITY_CONDUCTING_ORG, "activityConductingOrg");
 		PC_RESULT.put(KEY_ACTIVITY_COMMENT, "activityComment");
 		PC_RESULT.put(KEY_SAMPLE_AQFR_NAME, "sampleAqfrName");

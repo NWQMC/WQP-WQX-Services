@@ -41,7 +41,7 @@ public class TestActivityMap {
 		BASE_ACTIVITY.put(KEY_ACTIVITY_UPPER_DEPTH_UNIT, "activityUpperDepthUnit");
 		BASE_ACTIVITY.put(KEY_ACTIVITY_LOWER_DEPTH, "activityLowerDepth");
 		BASE_ACTIVITY.put(KEY_ACTIVITY_LOWER_DEPTH_UNIT, "activityLowerDepthUnit");
-		BASE_ACTIVITY.put(KEY_PROJECT_ID, "projectId");
+		BASE_ACTIVITY.put(KEY_ACTIVITY_PROJECTS, "projectId");
 		BASE_ACTIVITY.put(KEY_ACTIVITY_CONDUCTING_ORG, "activityConductingOrg");
 		BASE_ACTIVITY.put(KEY_ACTIVITY_COMMENT, "activityComment");
 		BASE_ACTIVITY.put(KEY_SAMPLE_AQFR_NAME, "sampleAqfrName");

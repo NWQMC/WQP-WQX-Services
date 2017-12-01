@@ -3,6 +3,7 @@ package gov.usgs.cida.wqp.mapping;
 public class ProjectColumn extends BaseColumn {
 	
 	//ResultSet Keys
+	public static final String KEY_PROJECT_ID = "PROJECT_ID";
 	public static final String KEY_PROJECT_IDENTIFIER = "PROJECT_IDENTIFIER";
 	public static final String KEY_PROJECT_NAME = "PROJECT_NAME";
 	public static final String KEY_PROJECT_DESCRIPTION = "DESCRIPTION";
