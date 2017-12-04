@@ -6,6 +6,7 @@ public class CountColumn {
 	public static final String KEY_STATION_COUNT = "STATION_COUNT";
 	public static final String KEY_RESULT_COUNT = "RESULT_COUNT";
 	public static final String KEY_RES_DETECT_QNT_LMT_COUNT = "RES_DETECT_QNT_LMT_COUNT";
+	public static final String KEY_PROJECT_COUNT = "RES_PROJECT_COUNT";
 
 	private CountColumn() {
 	}

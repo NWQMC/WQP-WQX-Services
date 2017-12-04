@@ -5,3 +5,4 @@
 /target
 java_pid*
 /.*
+/bin/

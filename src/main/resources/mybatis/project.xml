@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project">
+
+	<select id="select" resultType="java.util.LinkedHashMap" fetchSize="500">
+		select prime.project_id,
+		       prime.project_identifier,
+		       prime.project_name,
+		       prime.description,
+		       prime.sampling_design_type_code,
+		       prime.qapp_approved_indicator,
+		       prime.qapp_approved_agency_name,
+		       prime.project_file_url,
+		       prime.monitoring_location_weight_url
+       <include refid="dynamicWhere.projectsBase"/>
+	       order by prime.data_source_id,
+	       			prime.organization,
+	       			prime.project_identifier,
+	       			prime.project_id
+	</select>
+	
+	<sql id="projectCount">
+		select data_source, project_count
+		  from (<include refid="dynamicWhere.countBase"/>)
+	</sql>
+	
+	<select id="count" resultType="java.util.LinkedHashMap">
+		<include refid="project.projectCount"/>
+	</select>
+	
+</mapper>

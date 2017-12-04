@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dynamicWhere">
+	<sql id="baseWhereProjectClauses">
+		<if test="organization != null">
+			and (<include refid="dynamicWhere.organization" />)
+		</if>
+		<if test="providers != null">
+			and (<include refid="dynamicWhere.providers" />)
+		</if>
+	</sql>
+	<sql id="projectsBase">
+		from project prime
+	</sql>
+</mapper>

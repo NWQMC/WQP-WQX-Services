@@ -39,6 +39,7 @@ public class SwaggerConfig {
 	public static final String SIMPLE_STATION_TAG_NAME = "Simple Station (deprecated)";
 	public static final String STATION_TAG_NAME = "Station";
 	public static final String VERSION_TAG_NAME = "Application Version";
+	public static final String PROJECT_TAG_NAME = "Project";
 	private static final String TAG_DESCRIPTION = "Data Download";
 
 	@Autowired
