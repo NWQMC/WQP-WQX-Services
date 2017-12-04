@@ -4,6 +4,7 @@ import static gov.usgs.cida.wqp.swagger.model.ActivityCountJson.HEADER_NWIS_ACTI
 import static gov.usgs.cida.wqp.swagger.model.ResDetectQntLmtCountJson.HEADER_NWIS_RES_DETECT_QNT_LMT_COUNT;
 import static gov.usgs.cida.wqp.swagger.model.ResultCountJson.HEADER_NWIS_RESULT_COUNT;
 import static gov.usgs.cida.wqp.swagger.model.StationCountJson.HEADER_NWIS_SITE_COUNT;
+import static gov.usgs.cida.wqp.swagger.model.ProjectCountJson.HEADER_NWIS_PROJECT_COUNT;
 import static gov.usgs.cida.wqp.swagger.model.StationCountJson.NWIS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -79,11 +80,13 @@ public class BaseControllerTest {
 	public static final String TEST_NWIS_ACTIVITY_METRIC_COUNT = "32";
 	public static final String TEST_NWIS_RESULT_COUNT = "359";
 	public static final String TEST_NWIS_RES_DETECT_QNT_LMT_COUNT = "432";
+	public static final String TEST_NWIS_PROJECT_COUNT = "106";
 	public static final String TEST_TOTAL_STATION_COUNT = "121";
 	public static final String TEST_TOTAL_ACTIVITY_COUNT = "1131";
 	public static final String TEST_TOTAL_ACTIVITY_METRIC_COUNT = "321";
 	public static final String TEST_TOTAL_RESULT_COUNT = "3591";
 	public static final String TEST_TOTAL_RES_DETECT_QNT_LMT_COUNT = "4321";
+	public static final String TEST_TOTAL_PROJECT_COUNT = "1061";
 
 	@Mock
 	private IStreamingDao streamingDao;
@@ -379,6 +382,9 @@ public class BaseControllerTest {
 
 		TestBaseController.setProfile(Profile.RES_DETECT_QNT_LMT);
 		assertEquals(NameSpace.RES_DETECT_QNT_LMT, testController.determineNamespace());
+		
+		//TestBaseController.setProfile(Profile.PROJECT);
+		//assertEquals(NameSpace.PROJECT, testController.determineNamespace());
 
 		TestBaseController.setProfile(null);
 		assertNull(testController.determineNamespace());
@@ -1111,6 +1117,7 @@ public class BaseControllerTest {
 		nwisCountRow.put(CountColumn.KEY_ACTIVITY_METRIC_COUNT, TEST_NWIS_ACTIVITY_METRIC_COUNT);
 		nwisCountRow.put(CountColumn.KEY_RESULT_COUNT, TEST_NWIS_RESULT_COUNT);
 		nwisCountRow.put(CountColumn.KEY_RES_DETECT_QNT_LMT_COUNT, TEST_NWIS_RES_DETECT_QNT_LMT_COUNT);
+		nwisCountRow.put(CountColumn.KEY_PROJECT_COUNT, TEST_NWIS_PROJECT_COUNT);
 		rawCounts.add(nwisCountRow);
 
 		Map<String, Object> totalCountRow = new HashMap<>();
@@ -1120,6 +1127,7 @@ public class BaseControllerTest {
 		totalCountRow.put(CountColumn.KEY_ACTIVITY_METRIC_COUNT, TEST_TOTAL_ACTIVITY_METRIC_COUNT);
 		totalCountRow.put(CountColumn.KEY_RESULT_COUNT, TEST_TOTAL_RESULT_COUNT);
 		totalCountRow.put(CountColumn.KEY_RES_DETECT_QNT_LMT_COUNT, TEST_TOTAL_RES_DETECT_QNT_LMT_COUNT);
+		totalCountRow.put(CountColumn.KEY_PROJECT_COUNT, TEST_TOTAL_PROJECT_COUNT);
 		rawCounts.add(totalCountRow);
 
 		return rawCounts;
