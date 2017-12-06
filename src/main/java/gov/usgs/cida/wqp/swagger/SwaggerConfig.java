@@ -21,6 +21,7 @@ import gov.usgs.cida.wqp.swagger.model.PostParms;
 import gov.usgs.cida.wqp.swagger.model.ResDetectQntLmtCountJson;
 import gov.usgs.cida.wqp.swagger.model.ResultCountJson;
 import gov.usgs.cida.wqp.swagger.model.StationCountJson;
+import gov.usgs.cida.wqp.swagger.model.ProjectCountJson;
 import springfox.documentation.PathProvider;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.service.Tag;
@@ -86,7 +87,8 @@ public class SwaggerConfig {
 						typeResolver.resolve(ActivityCountJson.class),
 						typeResolver.resolve(ActivityMetricCountJson.class),
 						typeResolver.resolve(ResultCountJson.class),
-						typeResolver.resolve(ResDetectQntLmtCountJson.class))
+						typeResolver.resolve(ResDetectQntLmtCountJson.class),
+						typeResolver.resolve(ProjectCountJson.class))
 				.tags(new Tag(ACTIVITY_TAG_NAME, TAG_DESCRIPTION),
 						new Tag(ACTIVITY_METRIC_TAG_NAME, TAG_DESCRIPTION),
 						new Tag(RES_DETECT_QNT_LMT_TAG_NAME, TAG_DESCRIPTION),
