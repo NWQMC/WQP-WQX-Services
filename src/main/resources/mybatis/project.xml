@@ -21,7 +21,9 @@
 	</select>
 	
 	<sql id="projectCount">
-		select count(distinct prime.code_value) as project_count
+		select
+			data_source, 
+			count(distinct data_source|| '-' ||prime.code_value) as project_count
 		from project_dim prime
 		<choose>
 			<when test="analyticalmethod == null and assemblage == null and characteristicName == null and
@@ -32,6 +34,7 @@
 				<include refid="dynamicWhere.projectJoinResultSum"/>
 			</otherwise>
 		</choose>
+		group by rollup(data_source)
 	</sql>
 	
 	<select id="count" resultType="java.util.LinkedHashMap">

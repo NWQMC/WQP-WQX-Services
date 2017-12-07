@@ -17,7 +17,7 @@
 	<sql id="dynamicWhere.projectJoinActivitySum">
 		join (
 			select distinct
-					prime.data_source_id,
+					prime.data_source,
 					prime.station_id,
 					prime.project_id as activity_projects
 					count(distinct prime.project_id) over (partition by prime.data_source_id, prime.station_id) site_project_count
@@ -39,7 +39,7 @@
 	<sql id="dynamicWhere.projectJoinResultSum">
 		join (
 			  select distinct
-			  		 prime.data_source_id,
+			  		 prime.data_source,
 			  		 prime.station_id,
 			  		 prime.project_id as activity_projects,
 			  		 count(distinct prime.project_id) over (partition by prime.data_source_id, prime.station_id) site_project_count,
