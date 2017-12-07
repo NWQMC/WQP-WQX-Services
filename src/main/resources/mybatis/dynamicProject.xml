@@ -14,10 +14,6 @@
 		</if>
 	</sql>
 	
-	<sql id="projectsPresent">
-		project_id is not null
-	</sql>
-	
 	<sql id="dynamicWhere.projectJoinActivitySum">
 		join (
 			select distinct
@@ -33,9 +29,8 @@
 				     prime.data_source_id = quaternary.data_source_id
 			</if>			
 			<where>
-				<include refid="dynamicWhere.dynamicWhere.baseWhereStationGeoClauses"/>
+				<include refid="dynamicWhere.baseWhereStationGeoClauses"/>
 				<include refid="dynamicWhere.baseWhereStationClauses" />
-				<include refid="projectsPresent" />
 			</where>
 			) tertiary
 			on prime.data_source_id = tertiary.data_source_id and
@@ -61,7 +56,6 @@
 			  	  <include refid="dynamicWhere.baseWhereStationGeoClauses" />
 			  	  <include refid="dynamicWhere.baseWhereStationClauses" />
 			  	  <include refid="dynamicWhere.baseWhereResultClauses" />
-			  	  <include refid="projectsPresent" />
 			  </where>
 			  ) filter
 			  on prime.data_source_id = filter.data_source_id and
@@ -77,11 +71,6 @@
 			from
 				project_dim prime
 		<choose>
-			<when test="analyticalmethod == null and assemblage == null and characteristicName == null and
-			            characteristicType == null  and pCode == null and subjectTaxonomicName == null and
-			            minactivities == null and minresults == null">
-		    	<include refid="dynamicWhere.projectJoinStationSum" />
-			</when>
 			<when test="analyticalmethod == null and assemblage == null and characteristicName == null and
 						characteristicType == null and pCode == null and subjectTaxonomicName == null and
 						(minactivities != null or minresults != null)">

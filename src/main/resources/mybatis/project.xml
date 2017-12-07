@@ -6,7 +6,7 @@
 		select prime.organization,
 			   prime.organization_name,
 			   prime.project_id,
-		       prime.project_identifier,
+		       prime.code_value as project_identifier,
 		       prime.project_name,
 		       prime.description,
 		       prime.sampling_design_type_code,
