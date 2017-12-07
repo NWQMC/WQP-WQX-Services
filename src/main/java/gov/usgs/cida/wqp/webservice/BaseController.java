@@ -511,6 +511,8 @@ public abstract class BaseController {
 					return NameSpace.ACTIVITY_METRIC;
 				case RES_DETECT_QNT_LMT:
 					return NameSpace.RES_DETECT_QNT_LMT;
+				case PROJECT:
+					return NameSpace.PROJECT;
 				default:
 					//Should never get here...
 					return null;

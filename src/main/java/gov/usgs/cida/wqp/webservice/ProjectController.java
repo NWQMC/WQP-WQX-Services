@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationStrategy;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,7 +68,13 @@ public class ProjectController extends BaseController {
 	public void projectGetRequest(HttpServletRequest request, HttpServletResponse response) {
 		doGetRequest(request, response);
 	}
-
+	
+	@ApiOperation(value="Return requested data. Use when list of parameters is too long for a query string.")
+	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void projectJsonPostRequest(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<String, Object> postParms) {
+		doPostRequest(request, response, postParms);
+	}
+	
 	protected String addCountHeaders(HttpServletResponse response, List<Map<String, Object>> counts) {
 		addProjectHeaders(response, counts);
 		return HttpConstants.HEADER_TOTAL_PROJECT_COUNT;
