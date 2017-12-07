@@ -33,9 +33,7 @@
 				<include refid="dynamicWhere.baseWhereStationClauses" />
 			</where>
 			) tertiary
-			on prime.data_source_id = tertiary.data_source_id and
-			   prime.station_id = tertiary.station_id and
-			   prime.project_dim_value = tertiary.activity_projects
+			on prime.project_dim_value = tertiary.activity_projects
 	</sql>
 	
 	<sql id="dynamicWhere.projectJoinResultSum">
@@ -57,10 +55,8 @@
 			  	  <include refid="dynamicWhere.baseWhereStationClauses" />
 			  	  <include refid="dynamicWhere.baseWhereResultClauses" />
 			  </where>
-			  ) filter
-			  on prime.data_source_id = filter.data_source_id and
-			     prime.station_id = filter.station_id and
-			     prime.project_dim_value = filter.activity_projects
+			  ) tertiary
+			  on prime.project_dim_value = tertiary.activity_projects
 	</sql>
 
 	<sql id="projectsBase">
@@ -72,8 +68,7 @@
 				project_dim prime
 		<choose>
 			<when test="analyticalmethod == null and assemblage == null and characteristicName == null and
-						characteristicType == null and pCode == null and subjectTaxonomicName == null and
-						(minactivities != null or minresults != null)">
+						characteristicType == null and pCode == null and subjectTaxonomicName == null">
 				<include refid="dynamicWhere.projectJoinActivitySum" />		
 			</when>
 			<otherwise>

@@ -5,7 +5,6 @@
 	<select id="select" resultType="java.util.LinkedHashMap" fetchSize="500">
 		select prime.organization,
 			   prime.organization_name,
-			   prime.project_id,
 		       prime.code_value as project_identifier,
 		       prime.project_name,
 		       prime.description,
@@ -17,13 +16,22 @@
        <include refid="dynamicWhere.projectsBase"/>
 	       order by prime.data_source_id,
 	       			prime.organization,
-	       			prime.project_identifier,
+	       			prime.code_value,
 	       			prime.project_id
 	</select>
 	
 	<sql id="projectCount">
-		select data_source, project_count
-		  from (<include refid="dynamicWhere.countBase"/>)
+		select count(distinct prime.code_value) as project_count
+		from project_dim prime
+		<choose>
+			<when test="analyticalmethod == null and assemblage == null and characteristicName == null and
+						characteristicType == null and pCode == null and subjectTaxonomicName == null">
+				<include refid="dynamicWhere.projectJoinActivitySum" />		
+			</when>
+			<otherwise>
+				<include refid="dynamicWhere.projectJoinResultSum"/>
+			</otherwise>
+		</choose>
 	</sql>
 	
 	<select id="count" resultType="java.util.LinkedHashMap">
