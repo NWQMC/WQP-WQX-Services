@@ -3,7 +3,7 @@
 <mapper namespace="station">
 
     <select id="select" resultType="java.util.LinkedHashMap" resultOrdered="true" fetchSize="500" >
-        select prime.organization,
+        select prime.organization as organization,
                prime.organization_name,
                prime.site_id,
                prime.station_name,

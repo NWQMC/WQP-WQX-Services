@@ -5,7 +5,7 @@
 
     <sql id="baseWhereActivityClauses">
         <if test="project != null">
-            and (<include refid="dynamicWhere.project" />)
+            and (<include refid="dynamicWhere.activityProjects" />)
         </if>
         <if test="sampleMedia != null">
             and (<include refid="dynamicWhere.sampleMedia" />)
