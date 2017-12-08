@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
@@ -66,7 +65,8 @@ public class CountDaoProjectTest extends BaseSpringTest {
 	public void emptyParameterTest() {
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
 		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, TOTAL_PROJECT_COUNT, NWIS_PROJECT_COUNT, STEWARDS_PROJECT_COUNT, STORET_PROJECT_COUNT, BIODATA_PROJECT_COUNT);
-
+	}
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Single Parameter Counts against activity_sum
 

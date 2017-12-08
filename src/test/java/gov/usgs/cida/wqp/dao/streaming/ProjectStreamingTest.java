@@ -13,15 +13,23 @@ import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DbUnitConfiguration;
+
 import gov.usgs.cida.wqp.BaseSpringTest;
+import gov.usgs.cida.wqp.CsvDataSetLoader;
+import gov.usgs.cida.wqp.DBIntegrationTest;
 import gov.usgs.cida.wqp.dao.NameSpace;
 import gov.usgs.cida.wqp.dao.intfc.IStreamingDao;
 import gov.usgs.cida.wqp.mapping.BaseColumn;
 import gov.usgs.cida.wqp.mapping.StationColumn;
+import gov.usgs.cida.wqp.mapping.ProjectColumn;
 import gov.usgs.cida.wqp.mapping.TestResultHandler;
 import gov.usgs.cida.wqp.mapping.xml.StationKml;
 import gov.usgs.cida.wqp.parameter.Parameters;
@@ -74,13 +82,13 @@ public class ProjectStreamingTest extends BaseSpringTest {
 
 	@Test
 	public void nullParameterTest() {
-		streamingDao.stream(NameSpace.PROJECT.PROJECT, null, handler);
+		streamingDao.stream(NameSpace.PROJECT, null, handler);
 		assertEquals(TOTAL_PROJECT_COUNT, String.valueOf(handler.getResults().size()));
 	}
 
 	@Test
 	public void emptyParameterTest() {
-		streamingDao.stream(NameSpace.PROJECT.PROJECT, parms, handler);
+		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 		assertEquals(TOTAL_PROJECT_COUNT, String.valueOf(handler.getResults().size()));
 	}
 
@@ -124,12 +132,12 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707,
 				STORET_1043441, BIODATA_61233184, BIODATA_433830088977331);
 	}
-
+	
 	@Test
 	public void allDataSortedTest() {
 		Integer expectedColumnCount = expectedMap.keySet().size();
 		parms.put(Parameters.SORTED.toString(), "yes");
-		streamingDao.stream(NameSpace.PROJECT.PROJECT, parms, handler);
+		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		//Validate the number AND order of results.
@@ -151,7 +159,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 	@Test
 	public void avoidTest() {
 		parms.put(Parameters.AVOID.toString().replace(".", ""), getAvoid());
-		streamingDao.stream(NameSpace.PROJECT.PROJECT, parms, handler);
+		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(STORET_PROJECT_COUNT, String.valueOf(results.size()));
@@ -161,7 +169,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 	@Test
 	public void bboxTest() {
 		parms.put(Parameters.BBOX.toString(), getBBox());
-		streamingDao.stream(NameSpace.PROJECT.PROJECT, parms, handler);
+		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(9, results.size());
@@ -171,7 +179,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 	@Test
 	public void countryTest() {
 		parms.put(Parameters.COUNTRY.toString(), getCountry());
-		streamingDao.stream(NameSpace.PROJECT.PROJECT, parms, handler);
+		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(11, results.size());
@@ -182,7 +190,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 	@Test
 	public void countyTest() {
 		parms.put(Parameters.COUNTY.toString(), getCounty());
-		streamingDao.stream(NameSpace.PROJECT.PROJECT, parms, handler);
+		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(10, results.size());
@@ -550,7 +558,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 
 	public void assertContainsProject(LinkedList<Map<String, Object>> results, String[]... projects) {
 		for (Map<String, Object> result: results) {
-			LOG.debut(ProjectColumn.KEY_DATA_SOURCE_ID + ":" + result.get(ProjectColumn.KEY_DATA_SOURCE_ID) + '/' + ProjectColumn.KEY_PROJECT_ID + ":" + result.get(ProjectColumn.KEY_PROJECT_ID));
+			LOG.debug(ProjectColumn.KEY_DATA_SOURCE_ID + ":" + result.get(ProjectColumn.KEY_DATA_SOURCE_ID) + '/' + ProjectColumn.KEY_PROJECT_ID + ":" + result.get(ProjectColumn.KEY_PROJECT_ID));
 		}
 
 		for (String[] i : projects) {
@@ -564,10 +572,10 @@ public class ProjectStreamingTest extends BaseSpringTest {
 				}
 			}
 			if (!isFound) {
-				fail(StationColumn.KEY_DATA_SOURCE + ":" + i[0] + "/" + StationColumn.KEY_SITE_ID + ":" + i[1] + " was not in the result set.");
+				fail(ProjectColumn.KEY_DATA_SOURCE + ":" + i[0] + "/" + ProjectColumn.KEY_SITE_ID + ":" + i[1] + " was not in the result set.");
 			}
 		}
-		assertEquals("Double check result set expected size", stations.length, results.size());
+		assertEquals("Double check result set expected size", projects.length, results.size());
 	}
 
 }
