@@ -13,21 +13,20 @@
 			and (<include refid="dynamicWhere.project" />)
 		</if>
 	</sql>
-	
+
 	<sql id="dynamicWhere.projectJoinActivitySum">
 		join (
 			select distinct
 					prime.data_source,
-					prime.station_id,
 					prime.project_id as activity_projects
-					count(distinct prime.project_id) over (partition by prime.data_source_id, prime.station_id) site_project_count
-					sum(prime.activity_count) over (partition by prime.data_souce_id, prime.station_id) site_activity_count
+					count(distinct prime.project_id) over (partition by prime.data_source_id) site_project_count
+					sum(prime.activity_count) over (partition by prime.data_source_id) site_activity_count
 			from activity_sum prime
 			<if test="bBox != null or within != null">
 				join station_sum quaternary
 				  on prime.station_id = quaternary.station_id and
 				     prime.data_source_id = quaternary.data_source_id
-			</if>			
+			</if>
 			<where>
 				<include refid="dynamicWhere.baseWhereStationGeoClauses"/>
 				<include refid="dynamicWhere.baseWhereStationClauses" />
@@ -35,20 +34,19 @@
 			) tertiary
 			on prime.project_dim_value = tertiary.activity_projects
 	</sql>
-	
+
 	<sql id="dynamicWhere.projectJoinResultSum">
 		join (
 			  select distinct
 			  		 prime.data_source,
-			  		 prime.station_id,
 			  		 prime.project_id as activity_projects,
-			  		 count(distinct prime.project_id) over (partition by prime.data_source_id, prime.station_id) site_project_count,
-			  		 sum(prime.result_count) over (partition by prime.data_source_id, prime.station_id) site_result_count
+			  		 count(distinct prime.project_id) over (partition by prime.data_source_id) site_project_count,
+			  		 sum(prime.result_count) over (partition by prime.data_source_id) site_result_count
 			  from result_sum prime
 			  <if test="bBox != null or within != null">
 			  	join station_sum quaternary
 			  	  on prime.station_id = quaternary.station_id and
-			  	     prime.data_source_id = quaternary.data_source_id	
+			  	     prime.data_source_id = quaternary.data_source_id
 			  </if>
 			  <where>
 			  	  <include refid="dynamicWhere.baseWhereStationGeoClauses" />
@@ -60,7 +58,7 @@
 	</sql>
 
 	<sql id="projectsBase">
-		from project prime
+		from project_test prime
 		join (
 			select distinct
 				prime.code_value
@@ -69,7 +67,7 @@
 		<choose>
 			<when test="analyticalmethod == null and assemblage == null and characteristicName == null and
 						characteristicType == null and pCode == null and subjectTaxonomicName == null">
-				<include refid="dynamicWhere.projectJoinActivitySum" />		
+				<include refid="dynamicWhere.projectJoinActivitySum" />
 			</when>
 			<otherwise>
 				<include refid="dynamicWhere.projectJoinResultSum"/>
