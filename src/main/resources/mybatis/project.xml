@@ -14,7 +14,7 @@
 		       prime.project_file_url,
 		       prime.monitoring_location_weight_url
        <include refid="dynamicWhere.projectsBase"/>
-	       order by prime.data_source_id,
+	       order by prime.data_source,
 	       			prime.organization,
 	       			prime.code_value,
 	       			prime.project_id
