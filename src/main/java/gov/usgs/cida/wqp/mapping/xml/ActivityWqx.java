@@ -137,11 +137,11 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						WQX_ACT_DESCRIPTION,
 						WQX_ACT_BOTTOM_DEPTH,
 						WQX_MEASURE_UNIT)));
-		COLUMN_POSITION.put(KEY_PROJECT_ID,
+		COLUMN_POSITION.put(KEY_ACTIVITY_PROJECTS,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
 						WQX_ACT_DESCRIPTION,
-						WQX_PROJECT)));
+						WQX_PROJECT_IDENTIFIER)));
 		COLUMN_POSITION.put(KEY_ACTIVITY_CONDUCTING_ORG,
 				new LinkedList<String>(Arrays.asList(
 						WQX_ACTIVITY,
@@ -484,7 +484,7 @@ public class ActivityWqx extends BaseWqx implements IXmlMapping {
 						ACTIVITY_UPPER_DEPTH_UNIT,
 						ACTIVITY_LOWER_DEPTH,
 						ACTIVITY_LOWER_DEPTH_UNIT,
-						PROJECT_ID,
+						ACTIVITY_PROJECTS,
 						ACTIVITY_CONDUCTING_ORG,
 						SITE_ID,
 						ACTIVITY_COMMENT,

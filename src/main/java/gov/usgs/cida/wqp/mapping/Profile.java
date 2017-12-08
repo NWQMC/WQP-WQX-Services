@@ -13,7 +13,8 @@ public enum Profile {
 	ACTIVITY ("activity", "activity"),
 	ACTIVITY_METRIC ("activityMetric", "activitymetric"),
 	RES_DETECT_QNT_LMT ("resDetectQntLmt", "resdetectqntlmt"),
-	NARROW_RESULT ("narrowResult", "narrowresult");
+	NARROW_RESULT ("narrowResult", "narrowresult"),
+	PROJECT ("project", "project");
 
 	private final String name;
 	private final String baseFileName;

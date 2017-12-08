@@ -11,6 +11,8 @@ public enum NameSpace {
 	STATION ("station", null),
 	SIMPLE_STATION ("simpleStation", null),
 	STATION_KML ("stationKml", null),
+	
+	PROJECT ("project", null),
 
 	ACTIVITY ("activity", Parameters.MIN_ACTIVITIES),
 

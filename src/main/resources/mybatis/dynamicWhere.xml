@@ -64,11 +64,15 @@
         p_code in <foreach item="i" collection="pCode" open="(" separator="," close=")">#{i}</foreach>
     </sql>
 
-    <sql id="project">
+    <sql id="activityProjects">
         (prime.data_source_id,project_id) in
             (select data_source_id,project_dim_value
                from project_dim
               where code_value in <foreach item="i" collection="project" open="(" separator="," close=")">#{i}</foreach>)
+    </sql>
+    
+    <sql id="project">
+    	prime.project_id in <foreach item="i" collection="project" open="(" separator="," close=")">#{i}</foreach>
     </sql>
 
     <sql id="providers">

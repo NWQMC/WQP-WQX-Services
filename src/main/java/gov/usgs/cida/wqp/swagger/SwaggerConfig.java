@@ -21,6 +21,7 @@ import gov.usgs.cida.wqp.swagger.model.PostParms;
 import gov.usgs.cida.wqp.swagger.model.ResDetectQntLmtCountJson;
 import gov.usgs.cida.wqp.swagger.model.ResultCountJson;
 import gov.usgs.cida.wqp.swagger.model.StationCountJson;
+import gov.usgs.cida.wqp.swagger.model.ProjectCountJson;
 import springfox.documentation.PathProvider;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.service.Tag;
@@ -39,6 +40,7 @@ public class SwaggerConfig {
 	public static final String SIMPLE_STATION_TAG_NAME = "Simple Station (deprecated)";
 	public static final String STATION_TAG_NAME = "Station";
 	public static final String VERSION_TAG_NAME = "Application Version";
+	public static final String PROJECT_TAG_NAME = "Project";
 	private static final String TAG_DESCRIPTION = "Data Download";
 
 	@Autowired
@@ -85,7 +87,8 @@ public class SwaggerConfig {
 						typeResolver.resolve(ActivityCountJson.class),
 						typeResolver.resolve(ActivityMetricCountJson.class),
 						typeResolver.resolve(ResultCountJson.class),
-						typeResolver.resolve(ResDetectQntLmtCountJson.class))
+						typeResolver.resolve(ResDetectQntLmtCountJson.class),
+						typeResolver.resolve(ProjectCountJson.class))
 				.tags(new Tag(ACTIVITY_TAG_NAME, TAG_DESCRIPTION),
 						new Tag(ACTIVITY_METRIC_TAG_NAME, TAG_DESCRIPTION),
 						new Tag(RES_DETECT_QNT_LMT_TAG_NAME, TAG_DESCRIPTION),
