@@ -3,7 +3,7 @@
 
 	<groupId>gov.usgs.cida.wqp</groupId>
 	<artifactId>wqp</artifactId>
-	<version>0.8-SNAPSHOT</version>
+	<version>0.9-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>wqpgateway</name>

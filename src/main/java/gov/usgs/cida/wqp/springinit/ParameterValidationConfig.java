@@ -42,7 +42,7 @@ public class ParameterValidationConfig {
 	public static final String REGEX_FIPS_COUNTY = "(?:([A-Z]{2}):)?([0-9]{1,2}):([0-9]{3}|N/A)";
 	public static final String REGEX_SITEID = "[\\w]+\\-.*\\S";
 	public static final String REGEX_POSITIVE_INT = "^\\d+$";
-	public static final String REGEX_HUC = "(?:[0-9]{8})|(?:(?:[0-9]{2}){1,3}\\*?)";
+	public static final String REGEX_HUC = "(?:[0-9]{12})|(?:[0-9]{10})|(?:[0-9]{8})|(?:(?:[0-9]{2}){1,3}\\*?)";
 	public static final String REGEX_PCODE = "[0-9]{5}";
 	public static final String REGEX_MIMETYPES = "csv|tsv|tab|xlsx|xml|kml|kmz|json|geojson";
 	public static final String REGEX_AVOID = "NWIS|STORET";
