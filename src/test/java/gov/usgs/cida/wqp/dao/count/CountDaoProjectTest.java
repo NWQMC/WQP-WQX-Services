@@ -58,13 +58,13 @@ public class CountDaoProjectTest extends BaseSpringTest {
 	@Test
 	public void nullParameterTest() {
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, null);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, TOTAL_PROJECT_COUNT, NWIS_PROJECT_COUNT, STEWARDS_PROJECT_COUNT, STORET_PROJECT_COUNT, BIODATA_PROJECT_COUNT);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 9, TOTAL_PROJECT_COUNT, NWIS_PROJECT_COUNT, STEWARDS_PROJECT_COUNT, STORET_PROJECT_COUNT, BIODATA_PROJECT_COUNT);
 	}
 
 	@Test
 	public void emptyParameterTest() {
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, TOTAL_PROJECT_COUNT, NWIS_PROJECT_COUNT, STEWARDS_PROJECT_COUNT, STORET_PROJECT_COUNT, BIODATA_PROJECT_COUNT);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 9, TOTAL_PROJECT_COUNT, NWIS_PROJECT_COUNT, STEWARDS_PROJECT_COUNT, STORET_PROJECT_COUNT, BIODATA_PROJECT_COUNT);
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@ public class CountDaoProjectTest extends BaseSpringTest {
 	public void sampleMediaTest() {
 		parms.put(Parameters.SAMPLE_MEDIA.toString(), getSampleMedia());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, "11", "2", "2", "6", "1");
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, "9", "1", "1", "6", "1");
 	}
-
+	// left off here
 	@Test
 	public void startDateHiTest() {
 		parms.put(Parameters.START_DATE_HI.toString(), getStartDateHi());
