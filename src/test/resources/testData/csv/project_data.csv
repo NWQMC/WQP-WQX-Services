@@ -1,0 +1,10 @@
+PROJECT_ID,DATA_SOURCE_ID,DATA_SOURCE,PROJECT_IDENTIFIER,PROJECT_NAME,DESCRIPTION,SAMPLING_DESIGN_TYPE_CODE,QAPP_APPROVED_INDICATOR,QAPP_APPROVAL_AGENCY_NAME,PROJECT_FILE_URL,MONITORING_LOCATION_WEIGHT_URL,ORGANIZATION,ORGANIZATION_NAME
+1,3,STORET,Lake-BaselineMonitoringDNR,Lake Baseline,Lake Baseline Monitoring,G,Y,Agency 1,https://fake.org/111,https://fake.us/111,21FLVEMD,Volusa County Environmental Health Lab (Florida)
+2,3,STORET,SAM,Surface Air Measurements,SAM Description,Z,N,Agency 2,https://fake.org/222,https://fake.us/222,MDNR,Missouri Dept. of Natural Resources
+3,3,STORET,WR047,Water Resources 47,WR047 Description,G,Y,Agency 3,https://fake.org/333,https://fake.us/333,21LABCH,Louisiana Department of Health and Hospitals
+4,3,STORET,projectId,Some Project,Some Project Description,Z,Y ,Agency 4,https://fake.org/444,https://fake.us/444,ERWC,Eagle River Watershed Council (ERWC)
+5,3,STORET,EPABEACH,EPA Beach Observation,EPA Beach Description,U,Y,Agency 5,https://fake.org/555,https://fake.us/555,BLMRW,Barr Lake Milton Reservoir Watershed (Colorado)
+6,1,STEWARDS,CEAP,CEAP Name,CEAP Description,B,N,Agency 6,https://fake.org/666,https://fake.us/666,ARS,Agricultural Research Service
+7,2,NWIS,NAWQA,NAWQA Name,NAWQA Description,Z,Y,Agency 7,https://fake.org/777,https://fake.us/777,USGS-SC,USGS South Carolina Water Science Center
+8,3,STORET,SOMETHINGELSE,SOMETHINGELSE Name,SOMETHINGELSE Description,U,Y,Agency 8,https://fake.org/888,https://fake.us/888,UMC,"Univ. of Missouri, Columbia"
+9,4,BIODATA,SACR BioTDB,SACR Name,SACR Description,B,Y,Agency 9,https://fake.org/999,https://fake.us/999,USGS-NE,USGS Nebraska Water Science Center

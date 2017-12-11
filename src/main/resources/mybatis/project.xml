@@ -3,21 +3,21 @@
 <mapper namespace="project">
 
 	<select id="select" resultType="java.util.LinkedHashMap" fetchSize="500">
-		select prime.organization,
+		select prime.data_source,
+			   prime.organization,
 			   prime.organization_name,
-		       prime.code_value as project_identifier,
+		       prime.project_identifier,
 		       prime.project_name,
 		       prime.description,
 		       prime.sampling_design_type_code,
 		       prime.qapp_approved_indicator,
-		       prime.qapp_approved_agency_name,
+		       prime.qapp_approval_agency_name,
 		       prime.project_file_url,
 		       prime.monitoring_location_weight_url
        <include refid="dynamicWhere.projectsBase"/>
 	       order by prime.data_source,
 	       			prime.organization,
-	       			prime.code_value,
-	       			prime.project_id
+	       			prime.project_identifier
 	</select>
 	
 	<sql id="projectCount">
@@ -28,12 +28,13 @@
 		<choose>
 			<when test="analyticalmethod == null and assemblage == null and characteristicName == null and
 						characteristicType == null and pCode == null and subjectTaxonomicName == null">
-				<include refid="dynamicWhere.projectJoinActivitySum" />		
+				<include refid="dynamicWhere.projectJoinActivitySum" />
 			</when>
 			<otherwise>
 				<include refid="dynamicWhere.projectJoinResultSum"/>
 			</otherwise>
 		</choose>
+		<include refid="dynamicWhere.projectLimitWhere"/>
 		group by rollup(data_source)
 	</sql>
 	

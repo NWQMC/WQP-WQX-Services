@@ -58,13 +58,13 @@ public class CountDaoProjectTest extends BaseSpringTest {
 	@Test
 	public void nullParameterTest() {
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, null);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 9, TOTAL_PROJECT_COUNT, NWIS_PROJECT_COUNT, STEWARDS_PROJECT_COUNT, STORET_PROJECT_COUNT, BIODATA_PROJECT_COUNT);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, TOTAL_PROJECT_COUNT, NWIS_PROJECT_COUNT, STEWARDS_PROJECT_COUNT, STORET_PROJECT_COUNT, BIODATA_PROJECT_COUNT);
 	}
 
 	@Test
 	public void emptyParameterTest() {
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 9, TOTAL_PROJECT_COUNT, NWIS_PROJECT_COUNT, STEWARDS_PROJECT_COUNT, STORET_PROJECT_COUNT, BIODATA_PROJECT_COUNT);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, TOTAL_PROJECT_COUNT, NWIS_PROJECT_COUNT, STEWARDS_PROJECT_COUNT, STORET_PROJECT_COUNT, BIODATA_PROJECT_COUNT);
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,19 +76,19 @@ public class CountDaoProjectTest extends BaseSpringTest {
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
 		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, "9", "1", "1", "6", "1");
 	}
-	// left off here
+
 	@Test
 	public void startDateHiTest() {
 		parms.put(Parameters.START_DATE_HI.toString(), getStartDateHi());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, "11", "2", "2", "6", "1");
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, "9", "1", "1", "6", "1");
 	}
 
 	@Test
 	public void startDateLoTest() {
 		parms.put(Parameters.START_DATE_LO.toString(), getStartDateLo());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, "9", "2", "2", "4", "1");
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 5, "6", "1", "1", "3", "1");
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,28 +98,28 @@ public class CountDaoProjectTest extends BaseSpringTest {
 	public void analyticalMethodTest() {
 		parms.put(Parameters.ANALYTICAL_METHOD.toString(), getAnalyticalMethod());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 3, "5", "1", null, "4", null);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 3, "4", "1", null, "3", null);
 	}
 
 	@Test
 	public void assemblageTest() {
 		parms.put(Parameters.ASSEMBLAGE.toString(), getAssemblage());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 3, "5", null, null, "4", "1");
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 3, "4", null, null, "3", "1");
 	}
 
 	@Test
 	public void characteristicNameTest() {
 		parms.put(Parameters.CHARACTERISTIC_NAME.toString(), getCharacteristicName());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 2, "4", null, null, "4", null);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 2, "3", null, null, "3", null);
 	}
 
 	@Test
 	public void characteristicTypeTest() {
 		parms.put(Parameters.CHARACTERISTIC_TYPE.toString(), getCharacteristicType());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 3, "5", null, "1", "4", null);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 3, "4", null, "1", "3", null);
 	}
 
 	@Test
@@ -133,7 +133,7 @@ public class CountDaoProjectTest extends BaseSpringTest {
 	public void subjectTaxonomicNameTest() {
 		parms.put(Parameters.SUBJECT_TAXONOMIC_NAME.toString(), getSubjectTaxonomicName());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 3, "5", null, null, "4", "1");
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 3, "2", null, null, "1", "1");
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,7 +181,7 @@ public class CountDaoProjectTest extends BaseSpringTest {
 		parms.put(Parameters.START_DATE_LO.toString(), getStartDateLo());
 		parms.put(Parameters.WITHIN.toString(), getWithin());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 2, "2", null, null, "2", null);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 2, "1", null, null, "1", null);
 	}
 
 	@Test
@@ -209,7 +209,7 @@ public class CountDaoProjectTest extends BaseSpringTest {
 		parms.put(Parameters.START_DATE_LO.toString(), getStartDateLo());
 		parms.put(Parameters.SUBJECT_TAXONOMIC_NAME.toString(), getSubjectTaxonomicName());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 2, "2", null, null, "2", null);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 2, "1", null, null, "1", null);
 	}
 
 	@Test
@@ -242,7 +242,7 @@ public class CountDaoProjectTest extends BaseSpringTest {
 		parms.put(Parameters.SUBJECT_TAXONOMIC_NAME.toString(), getSubjectTaxonomicName());
 		parms.put(Parameters.WITHIN.toString(), getWithin());
 		List<Map<String, Object>> counts = countDao.getCounts(NameSpace.PROJECT, parms);
-		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 2, FILTERED_TOTAL_SITE_COUNT, null, null, FILTERED_STORET_SITE_COUNT, null);
+		assertResults(counts, CountColumn.KEY_PROJECT_COUNT, 2, "1", null, null, "1", null);
 	}
 
 	protected void assertResults(List<Map<String, Object>> counts, String countType, int expectedSize,

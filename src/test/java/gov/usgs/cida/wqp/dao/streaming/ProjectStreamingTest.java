@@ -45,25 +45,16 @@ public class ProjectStreamingTest extends BaseSpringTest {
 
 	TestResultHandler handler;
 	Map<String, Object> parms;
-
-	public static final String ARS_SITE = "ARSSite";
-	public static final String NWIS_SITE = "NWISSite";
-	public static final String STORET_SITE = "STORETSite";
-	public static final String BIODATA_SITE = "Unknown";
-
-	public static final String[] STEWARDS_36 = new String[]{STEWARDS, "ARS-IAWC-IAWC225", ARS_SITE};
-	public static final String[] STEWARDS_46 = new String[]{STEWARDS, "ARS-IAWC-IAWC410", ARS_SITE};
-	public static final String[] NWIS_1353690 = new String[]{NWIS, "USGS-05425700", NWIS_SITE};
-	public static final String[] NWIS_1360035 = new String[]{NWIS, "USGS-431925089002701", NWIS_SITE};
-	public static final String[] STORET_777 = new String[]{STORET, "organization-siteId2", STORET_SITE};
-	public static final String[] STORET_888 = new String[]{STORET, "organization-siteId", STORET_SITE};
-	public static final String[] STORET_999 = new String[]{STORET, "organization-siteId3", STORET_SITE};
-	public static final String[] STORET_1383 = new String[]{STORET, "WIDNR_WQX-113086", STORET_SITE};
-	public static final String[] STORET_436723 = new String[]{STORET, "WIDNR_WQX-10030952", STORET_SITE};
-	public static final String[] STORET_504707 = new String[]{STORET, "21NYDECA_WQX-ONTARIO-02", STORET_SITE};
-	public static final String[] STORET_1043441 = new String[]{STORET, "11NPSWRD-BICA_MFG_B", STORET_SITE};
-	public static final String[] BIODATA_61233184 = new String[]{BIODATA, "USGS-11421000", BIODATA_SITE};
-	public static final String[] BIODATA_433830088977331 = new String[]{BIODATA, "USGS-433830088977331", BIODATA_SITE};
+	
+	public static final String [] PROJECT_LAKE_BASELINE = new String[] {STORET, "Lake-BaselineMonitoringDNR"};
+	public static final String [] PROJECT_SAM = new String[] {STORET, "SAM"};
+	public static final String [] PROJECT_WR047 = new String[] {STORET, "WR047"};
+	public static final String [] PROJECT_PROJECTID = new String[] {STORET, "projectId"};
+	public static final String [] PROJECT_EPABEACH = new String[] {STORET, "EPABEACH"};
+	public static final String [] PROJECT_CEAP = new String[] {STEWARDS, "CEAP"};
+	public static final String [] PROJECT_NAWQA = new String[] {NWIS, "NAWQA"};
+	public static final String [] PROJECT_SOMETHINGELSE = new String[] {STORET, "SOMETHINGELSE"};
+	public static final String [] PROJECT_SACR_BIOTDB = new String[] {BIODATA, "SACR BioTDB"};
 
 	@Before
 	public void init() {
@@ -78,7 +69,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Activity + Activity_Sum
+	// Activity_Sum
 
 	@Test
 	public void nullParameterTest() {
@@ -92,70 +83,6 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		assertEquals(TOTAL_PROJECT_COUNT, String.valueOf(handler.getResults().size()));
 	}
 
-	protected void mimeTypeTest() {
-		parms.put(Parameters.MIMETYPE.toString(), JSON);
-		streamingDao.stream(NameSpace.PROJECT, parms, handler);
-		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(TOTAL_SITE_COUNT_GEOM, String.valueOf(results.size()));
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707,
-				STORET_1043441, BIODATA_61233184);
-
-		handler = new TestResultHandler();
-		parms.put(Parameters.MIMETYPE.toString(), GEOJSON);
-		streamingDao.stream(NameSpace.PROJECT, parms, handler);
-		results = handler.getResults();
-		assertEquals(TOTAL_SITE_COUNT_GEOM, String.valueOf(results.size()));
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707,
-				STORET_1043441, BIODATA_61233184);
-
-		handler = new TestResultHandler();
-		parms.put(Parameters.MIMETYPE.toString(), KML);
-		streamingDao.stream(NameSpace.PROJECT, parms, handler);
-		results = handler.getResults();
-		assertEquals(TOTAL_SITE_COUNT_GEOM, String.valueOf(results.size()));
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707,
-				STORET_1043441, BIODATA_61233184);
-
-		handler = new TestResultHandler();
-		parms.put(Parameters.MIMETYPE.toString(), KMZ);
-		streamingDao.stream(NameSpace.PROJECT, parms, handler);
-		results = handler.getResults();
-		assertEquals(TOTAL_SITE_COUNT_GEOM, String.valueOf(results.size()));
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707,
-				STORET_1043441, BIODATA_61233184);
-
-		handler = new TestResultHandler();
-		parms.put(Parameters.MIMETYPE.toString(), CSV);
-		streamingDao.stream(NameSpace.PROJECT, parms, handler);
-		results = handler.getResults();
-		assertEquals(TOTAL_SITE_COUNT, String.valueOf(results.size()));
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707,
-				STORET_1043441, BIODATA_61233184, BIODATA_433830088977331);
-	}
-	
-	@Test
-	public void allDataSortedTest() {
-		Integer expectedColumnCount = expectedMap.keySet().size();
-		parms.put(Parameters.SORTED.toString(), "yes");
-		streamingDao.stream(NameSpace.PROJECT, parms, handler);
-
-		LinkedList<Map<String, Object>> results = handler.getResults();
-		//Validate the number AND order of results.
-		assertEquals(TOTAL_SITE_COUNT, String.valueOf(results.size()));
-		assertRow(results.get(0), STEWARDS_36, expectedColumnCount);
-		assertRow(results.get(1), STEWARDS_46, expectedColumnCount);
-		assertRow(results.get(2), NWIS_1353690, expectedColumnCount);
-		assertRow(results.get(3), NWIS_1360035, expectedColumnCount);
-		assertRow(results.get(4), STORET_1043441, expectedColumnCount);
-		assertRow(results.get(5), STORET_504707, expectedColumnCount);
-		assertRow(results.get(6), STORET_436723, expectedColumnCount);
-		assertRow(results.get(7), STORET_1383, expectedColumnCount);
-		assertStoret888(expectedMap, results.get(8));
-		assertRow(results.get(9), STORET_777, expectedColumnCount);
-		assertRow(results.get(10), STORET_999, expectedColumnCount);
-		assertRow(results.get(11), BIODATA_61233184, expectedColumnCount);
-	}
-
 	@Test
 	public void avoidTest() {
 		parms.put(Parameters.AVOID.toString().replace(".", ""), getAvoid());
@@ -163,7 +90,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(STORET_PROJECT_COUNT, String.valueOf(results.size()));
-		assertContainsProject(results, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707, STORET_1043441);
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_EPABEACH, PROJECT_PROJECTID, PROJECT_SAM, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -172,8 +99,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(9, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_1383, STORET_436723, STORET_1043441);
+		assertEquals(7, results.size());
+		assertContainsProject(results, PROJECT_NAWQA, PROJECT_CEAP, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_PROJECTID, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -182,9 +109,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(11, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_1043441,
-				BIODATA_61233184);
+		System.out.println(results);
+		assertContainsProject(results, PROJECT_SACR_BIOTDB, PROJECT_NAWQA, PROJECT_CEAP, PROJECT_LAKE_BASELINE, PROJECT_WR047,
+				PROJECT_EPABEACH, PROJECT_PROJECTID, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -193,8 +120,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(10, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_1043441);
+		assertEquals(7, results.size());
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_PROJECTID, PROJECT_CEAP,
+				PROJECT_NAWQA, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -204,7 +132,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(7, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_1383, STORET_436723, STORET_1043441);
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_PROJECTID, PROJECT_CEAP, PROJECT_NAWQA,
+				PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -213,8 +142,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(4, results.size());
-		assertContainsProject(results, NWIS_1353690, NWIS_1360035, STORET_1383, STORET_436723);
+		assertEquals(3, results.size());
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_NAWQA);
 	}
 
 	@Test
@@ -224,7 +153,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(3, results.size());
-		assertContainsProject(results, NWIS_1353690, STORET_1383, STORET_436723);
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_NAWQA);
 	}
 
 	@Test
@@ -234,7 +163,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(2, results.size());
-		assertContainsProject(results, STORET_1383, STORET_436723);
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047);
 	}
 
 	@Test
@@ -247,8 +176,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		}
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
+		System.out.println(results);
 		assertEquals(3, results.size());
-		assertContainsProject(results, STORET_777, STORET_888, STORET_1383);
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_PROJECTID);
 	}
 
 	@Test
@@ -257,8 +187,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(10, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_1043441);
+		assertEquals(7, results.size());
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_PROJECTID, PROJECT_CEAP,
+				PROJECT_NAWQA, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -267,9 +198,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(11, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707,
-				STORET_1043441);
+		assertEquals(8, results.size());
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_SAM, PROJECT_WR047, PROJECT_PROJECTID, PROJECT_CEAP,
+				PROJECT_NAWQA, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -278,8 +209,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(9, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_436723, STORET_1043441);
+		assertEquals(5, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_CEAP, PROJECT_NAWQA, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -293,7 +224,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(3, results.size());
-		assertContainsProject(results, STORET_777, STORET_888, STORET_1383);
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_PROJECTID);
 	}
 
 	@Test
@@ -302,8 +233,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(7, results.size());
-		assertContainsProject(results, STEWARDS_36, NWIS_1353690, STORET_777, STORET_888, STORET_1383, STORET_504707, STORET_1043441);
+		assertEquals(4, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_SAM, PROJECT_NAWQA, PROJECT_CEAP);
 	}
 
 	@Test
@@ -312,8 +243,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(6, results.size());
-		assertContainsProject(results, NWIS_1353690, STORET_777, STORET_888, STORET_1383, STORET_504707, STORET_1043441);
+		assertEquals(5, results.size());
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_NAWQA, PROJECT_SAM, PROJECT_WR047, PROJECT_PROJECTID);
 	}
 
 	@Test
@@ -322,9 +253,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(11, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707, STORET_1043441,
-				BIODATA_61233184);
+		assertEquals(9, results.size());
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_SAM, PROJECT_WR047, PROJECT_PROJECTID, PROJECT_CEAP,
+				PROJECT_NAWQA, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE, PROJECT_SACR_BIOTDB);
 	}
 
 	@Test
@@ -333,10 +264,11 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(10, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_1043441);
+		assertEquals(7, results.size());
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_WR047, PROJECT_PROJECTID, PROJECT_CEAP,
+				PROJECT_NAWQA, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
-
+	
 	@Test
 	public void withinTest() {
 		parms.put(Parameters.WITHIN.toString(), getWithin());
@@ -345,12 +277,10 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(10, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_436723, STORET_504707);
+		assertEquals(6, results.size());
+		assertContainsProject(results, PROJECT_NAWQA, PROJECT_CEAP, PROJECT_LAKE_BASELINE, PROJECT_WR047,
+				PROJECT_PROJECTID, PROJECT_SAM);
 	}
-
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Station + Activity_Sum
 
 	@Test
 	public void projectTest() {
@@ -358,8 +288,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(9, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1043441, BIODATA_61233184);
+		assertEquals(4, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_CEAP, PROJECT_NAWQA, PROJECT_SACR_BIOTDB);
 	}
 
 	@Test
@@ -368,9 +298,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(11, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_504707, STORET_1043441,
-				BIODATA_61233184);
+		assertEquals(9, results.size());
+		assertContainsProject(results, PROJECT_LAKE_BASELINE, PROJECT_SAM, PROJECT_WR047, PROJECT_WR047, PROJECT_PROJECTID,
+				PROJECT_CEAP, PROJECT_NAWQA, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE, PROJECT_SACR_BIOTDB);
 	}
 
 	@Test
@@ -379,9 +309,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(11, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1383, STORET_504707, STORET_1043441,
-				BIODATA_61233184);
+		assertEquals(9, results.size());
+		assertContainsProject(results, PROJECT_SACR_BIOTDB, PROJECT_NAWQA, PROJECT_CEAP, PROJECT_LAKE_BASELINE,
+				PROJECT_WR047, PROJECT_EPABEACH, PROJECT_PROJECTID, PROJECT_SAM, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -390,8 +320,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(9, results.size());
-		assertContainsProject(results, STEWARDS_36, STEWARDS_46, NWIS_1353690, NWIS_1360035, STORET_777, STORET_888, STORET_999, STORET_1043441, BIODATA_61233184);
+		assertEquals(6, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_CEAP, PROJECT_NAWQA, PROJECT_EPABEACH,
+				PROJECT_SOMETHINGELSE, PROJECT_SACR_BIOTDB);
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -403,8 +334,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(5, results.size());
-		assertContainsProject(results, NWIS_1353690, STORET_777, STORET_888, STORET_999, STORET_1043441);
+		assertEquals(4, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_NAWQA, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -413,8 +344,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(5, results.size());
-		assertContainsProject(results, STORET_777, STORET_888, STORET_999, STORET_1043441, BIODATA_61233184);
+		assertEquals(4, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE, PROJECT_SACR_BIOTDB);
 	}
 
 	@Test
@@ -423,8 +354,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(4, results.size());
-		assertContainsProject(results, STORET_777, STORET_888, STORET_999, STORET_1043441);
+		assertEquals(3, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -433,8 +364,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(5, results.size());
-		assertContainsProject(results, STEWARDS_36, STORET_777, STORET_888, STORET_999, STORET_1043441);
+		assertEquals(4, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_CEAP, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -444,7 +375,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
 		assertEquals(4, results.size());
-		assertContainsProject(results, NWIS_1360035, STORET_777, STORET_888, STORET_1043441);
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_NAWQA, PROJECT_EPABEACH, PROJECT_SOMETHINGELSE);
 	}
 
 	@Test
@@ -453,8 +384,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(5, results.size());
-		assertContainsProject(results, STORET_777, STORET_888, STORET_999, STORET_1043441, BIODATA_61233184);
+		assertEquals(2, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID, PROJECT_SACR_BIOTDB);
 	}
 
 	@Test
@@ -477,8 +408,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(3, results.size());
-		assertContainsProject(results, NWIS_1353690, STORET_777, STORET_888);
+		assertEquals(1, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID);
 	}
 
 	@Test
@@ -505,8 +436,8 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(2, results.size());
-		assertContainsProject(results, STORET_777, STORET_888);
+		assertEquals(1, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID);
 	}
 
 	@Test
@@ -540,20 +471,9 @@ public class ProjectStreamingTest extends BaseSpringTest {
 		streamingDao.stream(NameSpace.PROJECT, parms, handler);
 
 		LinkedList<Map<String, Object>> results = handler.getResults();
-		assertEquals(2, results.size());
-		assertContainsProject(results, STORET_777, STORET_888);
-	}
-
-	public static void assertRow(Map<String, Object> row, String[] station, int expectedColumnCount) {
-		//The KML does not include data_source, it has a style_url
-		assertEquals(expectedColumnCount, row.keySet().size());
-		if (row.containsKey(StationColumn.KEY_DATA_SOURCE)) {
-			assertEquals(station[0], row.get(BaseColumn.KEY_DATA_SOURCE));
-		}
-		assertEquals(station[1], row.get(StationColumn.KEY_SITE_ID));
-		if (row.containsKey(StationKml.KEY_STYLE_URL)) {
-			assertEquals(station[2], row.get(StationKml.KEY_STYLE_URL));
-		}
+		System.out.println(results);
+		assertEquals(1, results.size());
+		assertContainsProject(results, PROJECT_PROJECTID);
 	}
 
 	public void assertContainsProject(LinkedList<Map<String, Object>> results, String[]... projects) {
@@ -566,7 +486,7 @@ public class ProjectStreamingTest extends BaseSpringTest {
 			for (Map<String, Object> result : results) {
 				if (result.containsKey(ProjectColumn.KEY_DATA_SOURCE)
 						&& i[0].equalsIgnoreCase(((String) result.get(ProjectColumn.KEY_DATA_SOURCE)))
-						&& i[1].equalsIgnoreCase(result.get(ProjectColumn.KEY_SITE_ID).toString())) {
+						&& i[1].equalsIgnoreCase(result.get(ProjectColumn.KEY_PROJECT_IDENTIFIER).toString())) {
 					isFound = true;
 					break;
 				}
