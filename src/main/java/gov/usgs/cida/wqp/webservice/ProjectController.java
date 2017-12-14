@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiResponses;
 
 @Api(tags= {SwaggerConfig.PROJECT_TAG_NAME})
 @RestController
-@RequestMapping(value=HttpConstants.ENDPOINT_PROJECT,
+@RequestMapping(value=HttpConstants.PROJECT_SEARCH_ENDPOINT,
 produces={HttpConstants.MIME_TYPE_TSV,
 		HttpConstants.MIME_TYPE_CSV,
 		HttpConstants.MIME_TYPE_XLSX,
@@ -75,6 +75,20 @@ public class ProjectController extends BaseController {
 		doPostRequest(request, response, postParms);
 	}
 	
+	@ApiOperation(value="Same as the JSON consumer, but hidden from swagger", hidden=true)
+	@PostMapping(consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public void activityFormUrlencodedPostRequest(HttpServletRequest request, HttpServletResponse response) {
+		doPostRequest(request, response, null);
+	}
+	
+	@ApiOperation(value="Return anticipated record counts.")
+	@ApiResponses(value= {@ApiResponse(code=200, message="OK", response=ProjectCountJson.class)})
+	@PostMapping(value="count", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, String> projectPostCountRequest(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody Map<String, Object> postParms) {
+		return doPostCountRequest(request, response, postParms);
+	}
+	
 	protected String addCountHeaders(HttpServletResponse response, List<Map<String, Object>> counts) {
 		addProjectHeaders(response, counts);
 		return HttpConstants.HEADER_TOTAL_PROJECT_COUNT;
@@ -98,8 +112,7 @@ public class ProjectController extends BaseController {
 	@Override
 	protected IXmlMapping getKmlMapping() {
 		return null;
-	}
-	
+	}	
 }
 
 

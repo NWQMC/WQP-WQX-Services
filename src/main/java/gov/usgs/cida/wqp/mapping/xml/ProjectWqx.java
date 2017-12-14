@@ -24,7 +24,7 @@ public class ProjectWqx extends BaseWqx implements IXmlMapping {
 
 	static {
 		HARD_BREAK.put(KEY_ORGANIZATION, ROOT_NODE);
-		HARD_BREAK.put(KEY_PROJECT_ID, WQX_ORGANIZATION);
+		HARD_BREAK.put(KEY_PROJECT_IDENTIFIER, WQX_ORGANIZATION);
 	}
 	
 	static {
@@ -83,7 +83,7 @@ public class ProjectWqx extends BaseWqx implements IXmlMapping {
 	static {
 		GROUPING.put(KEY_ORGANIZATION,
 				new LinkedList<ColumnProfile>(Arrays.asList(ORGANIZATION, ORGANIZATION_NAME)));
-		GROUPING.put(KEY_PROJECT_ID,
+		GROUPING.put(KEY_PROJECT_IDENTIFIER,
 				new LinkedList<ColumnProfile>(Arrays.asList(
 						PROJECT_IDENTIFIER,
 						PROJECT_NAME,

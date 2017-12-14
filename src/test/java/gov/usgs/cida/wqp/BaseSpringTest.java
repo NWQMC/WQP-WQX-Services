@@ -135,6 +135,8 @@ public abstract class BaseSpringTest {
 	public static final String FILTERED_TOTAL_RESULT_COUNT = "4";
 	public static final String FILTERED_STORET_RES_DETECT_QNT_LMT_COUNT = "7";
 	public static final String FILTERED_TOTAL_RES_DETECT_QNT_LMT_COUNT = "7";
+	public static final String FILTERED_TOTAL_PROJECT_COUNT = "1";
+	public static final String FILTERED_STORET_PROJECT_COUNT = "1";
 
 	public static final BigDecimal STEWARDS_ID = BigDecimal.ONE;
 	public static final BigDecimal NWIS_ID = BigDecimal.valueOf(2);
