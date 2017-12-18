@@ -91,12 +91,21 @@ public abstract class BaseWqx {
 	public static final String WQX_ACT_DEPTH_REFERENCE = "ActivityDepthAltitudeReferencePointText";
 	public static final String WQX_ACT_TOP_DEPTH = "ActivityTopDepthHeightMeasure";
 	public static final String WQX_ACT_BOTTOM_DEPTH = "ActivityBottomDepthHeightMeasure";
-	public static final String WQX_PROJECT = "ProjectIdentifier";
 	public static final String WQX_ACT_CONDUCTION_ORG = "ActivityConductingOrganizationText";
 	public static final String WQX_ACT_COMMENT = "ActivityCommentText";
 	public static final String WQX_SAMPLE_AQUIFER = "SampleAquifer";
 	public static final String WQX_HYDROLOGIC_CONDITION = "HydrologicCondition";
 	public static final String WQX_HYDROLOGIC_EVENT = "HydrologicEvent";
+	
+	public static final String WQX_PROJECT = "Project";
+	public static final String WQX_PROJECT_IDENTIFIER = "ProjectIdentifier";
+	public static final String WQX_PROJECT_NAME = "ProjectName";
+	public static final String WQX_PROJECT_DESCRIPTION_TEXT = "ProjectDescriptionText";
+	public static final String WQX_SAMPLING_DESIGN_TYPE_CODE = "SamplingDesignTypeCode";
+	public static final String WQX_QAPP_APPROVED_INDICATOR = "QAPPApprovedIndicator";
+	public static final String WQX_QAPP_APPROVAL_AGENCY_NAME = "QAPPApprovalAgencyName";
+	public static final String WQX_PROJECT_FILE_URL = "ProjectFileUrl";
+	public static final String WQX_PROJECT_MONITORING_LOCATION_WEIGHT_URL = "ProjectMonitoringLocationWeightingURL";
 
 	public static final String WQX_ACT_LOCATION = "ActivityLocation";
 

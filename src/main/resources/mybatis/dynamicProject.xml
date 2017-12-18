@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dynamicWhere">
+	<sql id="baseWhereProjectClauses">
+		<if test="organization != null">
+			and (<include refid="dynamicWhere.organization" />)
+		</if>
+		<if test="providers != null">
+			and (<include refid="dynamicWhere.providers" />)
+		</if>
+        <if test="startDateLo != null or startDateHi != null">
+            and (<include refid="dynamicWhere.startDateLoHi" />)
+        </if>
+		<if test="project != null">
+			and (<include refid="dynamicWhere.project" />)
+		</if>
+	</sql>
+	
+	<sql id="projectLimitWhere">
+		<where>
+			<if test="minactivities != null">
+				and (project_activity_count >= #{minactivities[0]})
+			</if>
+			<if test="minresults != null">
+				and (project_result_count >= #{minresults[0]})
+			</if>
+		</where>
+	</sql>
+
+	<sql id="dynamicWhere.projectJoinActivitySum">
+		join (
+			select distinct
+					prime.data_source,
+					prime.project_id as activity_projects,
+					count(prime.activity_id) over (partition by prime.project_id) project_activity_count,
+					sum(prime.result_count) over (partition by prime.project_id) project_result_count
+			from activity_sum prime
+			<if test="bBox != null or within != null">
+				join station_sum quaternary
+				  on prime.station_id = quaternary.station_id and
+				     prime.data_source_id = quaternary.data_source_id
+			</if>
+			<where>
+				<include refid="dynamicWhere.baseWhereStationGeoClauses"/>
+				<include refid="dynamicWhere.baseWhereStationClauses" />
+				<include refid="dynamicWhere.baseWhereProjectClauses" />
+			</where>
+			) tertiary
+			on prime.project_dim_value = tertiary.activity_projects
+	</sql>
+
+	<sql id="dynamicWhere.projectJoinResultSum">
+		join (
+			  select distinct
+			  		 prime.data_source,
+			  		 prime.project_id as activity_projects,
+			  		 count(distinct prime.activity_id) over (partition by prime.project_id) project_activity_count,
+			  		 sum(prime.result_count) over (partition by prime.project_id) project_result_count
+			  from result_sum prime
+			  <if test="bBox != null or within != null">
+			  	join station_sum quaternary
+			  	  on prime.station_id = quaternary.station_id and
+			  	     prime.data_source_id = quaternary.data_source_id
+			  </if>
+			  <where>
+			  	  <include refid="dynamicWhere.baseWhereStationGeoClauses" />
+			  	  <include refid="dynamicWhere.baseWhereStationClauses" />
+			  	  <include refid="dynamicWhere.baseWhereResultClauses" />
+			  	  <include refid="dynamicWhere.baseWhereProjectClauses" />
+			  </where>
+			  ) tertiary
+			  on prime.project_dim_value = tertiary.activity_projects
+	</sql>
+
+	<sql id="projectsBase">
+		from project_data prime
+		join (
+			select distinct
+				prime.code_value
+			from
+				project_dim prime
+		<choose>
+			<when test="analyticalmethod == null and assemblage == null and characteristicName == null and
+						characteristicType == null and pCode == null and subjectTaxonomicName == null">
+				<include refid="dynamicWhere.projectJoinActivitySum" />
+			</when>
+			<otherwise>
+				<include refid="dynamicWhere.projectJoinResultSum"/>
+			</otherwise>
+		</choose>
+		<include refid="dynamicWhere.projectLimitWhere"/>
+		) secondary
+		on prime.project_identifier = secondary.code_value
+	</sql>
+</mapper>

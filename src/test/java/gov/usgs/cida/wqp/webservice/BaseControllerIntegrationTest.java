@@ -110,7 +110,6 @@ public abstract class BaseControllerIntegrationTest extends BaseSpringTest {
 
 		rtn = noResultHeaderCheck(callMockGet(url + getNoResultParameters(), mimeType, getContentDisposition(profile, fileType))).andReturn();
 		assertEquals(getCompareFile(profile, fileType, "NoResult"), rtn.getResponse().getContentAsString());
-
 		if (isPostable) {
 			rtn = unFilteredHeaderCheck(callMockPostJson(url, "{}", mimeType, getContentDisposition(profile, fileType))).andReturn();
 			assertEquals(getCompareFile(profile, fileType, null), rtn.getResponse().getContentAsString());

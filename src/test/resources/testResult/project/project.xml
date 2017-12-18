@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WQX xmlns='http://qwwebservices.usgs.gov/schemas/WQX-Outbound/2_0/' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://qwwebservices.usgs.gov/schemas/WQX-Outbound/2_0/ http://qwwebservices.usgs.gov/schemas/WQX-Outbound/2_0/index.xsd'>
+  <Organization>
+    <OrganizationDescription>
+      <OrganizationIdentifier>USGS-NE</OrganizationIdentifier>
+      <OrganizationFormalName>USGS Nebraska Water Science Center</OrganizationFormalName>
+    </OrganizationDescription>
+    <Project>
+      <ProjectIdentifier>SACR BioTDB</ProjectIdentifier>
+      <ProjectName>SACR Name</ProjectName>
+      <ProjectDescriptionText>SACR Description</ProjectDescriptionText>
+      <SamplingDesignTypeCode>B</SamplingDesignTypeCode>
+      <QAPPApprovedIndicator>Y</QAPPApprovedIndicator>
+      <QAPPApprovalAgencyName>Agency 9</QAPPApprovalAgencyName>
+      <ProjectFileUrl>https://fake.org/999</ProjectFileUrl>
+      <ProjectMonitoringLocationWeightingURL>https://fake.us/999</ProjectMonitoringLocationWeightingURL>
+    </Project>
+  </Organization>
+  <Organization>
+    <OrganizationDescription>
+      <OrganizationIdentifier>USGS-SC</OrganizationIdentifier>
+      <OrganizationFormalName>USGS South Carolina Water Science Center</OrganizationFormalName>
+    </OrganizationDescription>
+    <Project>
+      <ProjectIdentifier>NAWQA</ProjectIdentifier>
+      <ProjectName>NAWQA Name</ProjectName>
+      <ProjectDescriptionText>NAWQA Description</ProjectDescriptionText>
+      <SamplingDesignTypeCode>Z</SamplingDesignTypeCode>
+      <QAPPApprovedIndicator>Y</QAPPApprovedIndicator>
+      <QAPPApprovalAgencyName>Agency 7</QAPPApprovalAgencyName>
+      <ProjectFileUrl>https://fake.org/777</ProjectFileUrl>
+      <ProjectMonitoringLocationWeightingURL>https://fake.us/777</ProjectMonitoringLocationWeightingURL>
+    </Project>
+  </Organization>
+  <Organization>
+    <OrganizationDescription>
+      <OrganizationIdentifier>ARS</OrganizationIdentifier>
+      <OrganizationFormalName>Agricultural Research Service</OrganizationFormalName>
+    </OrganizationDescription>
+    <Project>
+      <ProjectIdentifier>CEAP</ProjectIdentifier>
+      <ProjectName>CEAP Name</ProjectName>
+      <ProjectDescriptionText>CEAP Description</ProjectDescriptionText>
+      <SamplingDesignTypeCode>B</SamplingDesignTypeCode>
+      <QAPPApprovedIndicator>N</QAPPApprovedIndicator>
+      <QAPPApprovalAgencyName>Agency 6</QAPPApprovalAgencyName>
+      <ProjectFileUrl>https://fake.org/666</ProjectFileUrl>
+      <ProjectMonitoringLocationWeightingURL>https://fake.us/666</ProjectMonitoringLocationWeightingURL>
+    </Project>
+  </Organization>
+  <Organization>
+    <OrganizationDescription>
+      <OrganizationIdentifier>21FLVEMD</OrganizationIdentifier>
+      <OrganizationFormalName>Volusa County Environmental Health Lab (Florida)</OrganizationFormalName>
+    </OrganizationDescription>
+    <Project>
+      <ProjectIdentifier>Lake-BaselineMonitoringDNR</ProjectIdentifier>
+      <ProjectName>Lake Baseline</ProjectName>
+      <ProjectDescriptionText>Lake Baseline Monitoring</ProjectDescriptionText>
+      <SamplingDesignTypeCode>G</SamplingDesignTypeCode>
+      <QAPPApprovedIndicator>Y</QAPPApprovedIndicator>
+      <QAPPApprovalAgencyName>Agency 1</QAPPApprovalAgencyName>
+      <ProjectFileUrl>https://fake.org/111</ProjectFileUrl>
+      <ProjectMonitoringLocationWeightingURL>https://fake.us/111</ProjectMonitoringLocationWeightingURL>
+    </Project>
+  </Organization>
+  <Organization>
+    <OrganizationDescription>
+      <OrganizationIdentifier>21LABCH</OrganizationIdentifier>
+      <OrganizationFormalName>Louisiana Department of Health and Hospitals</OrganizationFormalName>
+    </OrganizationDescription>
+    <Project>
+      <ProjectIdentifier>WR047</ProjectIdentifier>
+      <ProjectName>Water Resources 47</ProjectName>
+      <ProjectDescriptionText>WR047 Description</ProjectDescriptionText>
+      <SamplingDesignTypeCode>G</SamplingDesignTypeCode>
+      <QAPPApprovedIndicator>Y</QAPPApprovedIndicator>
+      <QAPPApprovalAgencyName>Agency 3</QAPPApprovalAgencyName>
+      <ProjectFileUrl>https://fake.org/333</ProjectFileUrl>
+      <ProjectMonitoringLocationWeightingURL>https://fake.us/333</ProjectMonitoringLocationWeightingURL>
+    </Project>
+  </Organization>
+  <Organization>
+    <OrganizationDescription>
+      <OrganizationIdentifier>BLMRW</OrganizationIdentifier>
+      <OrganizationFormalName>Barr Lake Milton Reservoir Watershed (Colorado)</OrganizationFormalName>
+    </OrganizationDescription>
+    <Project>
+      <ProjectIdentifier>EPABEACH</ProjectIdentifier>
+      <ProjectName>EPA Beach Observation</ProjectName>
+      <ProjectDescriptionText>EPA Beach Description</ProjectDescriptionText>
+      <SamplingDesignTypeCode>U</SamplingDesignTypeCode>
+      <QAPPApprovedIndicator>Y</QAPPApprovedIndicator>
+      <QAPPApprovalAgencyName>Agency 5</QAPPApprovalAgencyName>
+      <ProjectFileUrl>https://fake.org/555</ProjectFileUrl>
+      <ProjectMonitoringLocationWeightingURL>https://fake.us/555</ProjectMonitoringLocationWeightingURL>
+    </Project>
+  </Organization>
+  <Organization>
+    <OrganizationDescription>
+      <OrganizationIdentifier>ERWC</OrganizationIdentifier>
+      <OrganizationFormalName>Eagle River Watershed Council (ERWC)</OrganizationFormalName>
+    </OrganizationDescription>
+    <Project>
+      <ProjectIdentifier>projectId</ProjectIdentifier>
+      <ProjectName>Some Project</ProjectName>
+      <ProjectDescriptionText>Some Project Description</ProjectDescriptionText>
+      <SamplingDesignTypeCode>Z</SamplingDesignTypeCode>
+      <QAPPApprovedIndicator>Y </QAPPApprovedIndicator>
+      <QAPPApprovalAgencyName>Agency 4</QAPPApprovalAgencyName>
+      <ProjectFileUrl>https://fake.org/444</ProjectFileUrl>
+      <ProjectMonitoringLocationWeightingURL>https://fake.us/444</ProjectMonitoringLocationWeightingURL>
+    </Project>
+  </Organization>
+  <Organization>
+    <OrganizationDescription>
+      <OrganizationIdentifier>MDNR</OrganizationIdentifier>
+      <OrganizationFormalName>Missouri Dept. of Natural Resources</OrganizationFormalName>
+    </OrganizationDescription>
+    <Project>
+      <ProjectIdentifier>SAM</ProjectIdentifier>
+      <ProjectName>Surface Air Measurements</ProjectName>
+      <ProjectDescriptionText>SAM Description</ProjectDescriptionText>
+      <SamplingDesignTypeCode>Z</SamplingDesignTypeCode>
+      <QAPPApprovedIndicator>N</QAPPApprovedIndicator>
+      <QAPPApprovalAgencyName>Agency 2</QAPPApprovalAgencyName>
+      <ProjectFileUrl>https://fake.org/222</ProjectFileUrl>
+      <ProjectMonitoringLocationWeightingURL>https://fake.us/222</ProjectMonitoringLocationWeightingURL>
+    </Project>
+  </Organization>
+  <Organization>
+    <OrganizationDescription>
+      <OrganizationIdentifier>UMC</OrganizationIdentifier>
+      <OrganizationFormalName>Univ. of Missouri, Columbia</OrganizationFormalName>
+    </OrganizationDescription>
+    <Project>
+      <ProjectIdentifier>SOMETHINGELSE</ProjectIdentifier>
+      <ProjectName>SOMETHINGELSE Name</ProjectName>
+      <ProjectDescriptionText>SOMETHINGELSE Description</ProjectDescriptionText>
+      <SamplingDesignTypeCode>U</SamplingDesignTypeCode>
+      <QAPPApprovedIndicator>Y</QAPPApprovedIndicator>
+      <QAPPApprovalAgencyName>Agency 8</QAPPApprovalAgencyName>
+      <ProjectFileUrl>https://fake.org/888</ProjectFileUrl>
+      <ProjectMonitoringLocationWeightingURL>https://fake.us/888</ProjectMonitoringLocationWeightingURL>
+    </Project>
+  </Organization>
+</WQX>

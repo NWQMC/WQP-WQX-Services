@@ -511,6 +511,8 @@ public abstract class BaseController {
 					return NameSpace.ACTIVITY_METRIC;
 				case RES_DETECT_QNT_LMT:
 					return NameSpace.RES_DETECT_QNT_LMT;
+				case PROJECT:
+					return NameSpace.PROJECT;
 				default:
 					//Should never get here...
 					return null;
@@ -650,6 +652,10 @@ public abstract class BaseController {
 
 	public void addResDetectQntLmtHeaders(HttpServletResponse response, List<Map<String, Object>> counts) {
 		addCountHeaders(response, counts, HttpConstants.HEADER_TOTAL_RES_DETECT_QNT_LMT_COUNT, HttpConstants.HEADER_RES_DETECT_QNT_LMT_COUNT, CountColumn.KEY_RES_DETECT_QNT_LMT_COUNT);
+	}
+	
+	public void addProjectHeaders(HttpServletResponse response, List<Map<String, Object>> counts) {
+		addCountHeaders(response, counts, HttpConstants.HEADER_TOTAL_PROJECT_COUNT, HttpConstants.HEADER_PROJECT_COUNT, CountColumn.KEY_PROJECT_COUNT);
 	}
 
 }

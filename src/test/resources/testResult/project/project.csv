@@ -1,0 +1,10 @@
+OrganizationIdentifier,OrganizationFormalName,ProjectIdentifier,ProjectName,ProjectDescriptionText,SamplingDesignTypeCode,QAPPApprovedIndicator,QAPPApprovalAgencyName,ProjectFileUrl,ProjectMonitoringLocationWeightingURL
+USGS-NE,USGS Nebraska Water Science Center,SACR BioTDB,SACR Name,SACR Description,B,Y,Agency 9,https://fake.org/999,https://fake.us/999
+USGS-SC,USGS South Carolina Water Science Center,NAWQA,NAWQA Name,NAWQA Description,Z,Y,Agency 7,https://fake.org/777,https://fake.us/777
+ARS,Agricultural Research Service,CEAP,CEAP Name,CEAP Description,B,N,Agency 6,https://fake.org/666,https://fake.us/666
+21FLVEMD,Volusa County Environmental Health Lab (Florida),Lake-BaselineMonitoringDNR,Lake Baseline,Lake Baseline Monitoring,G,Y,Agency 1,https://fake.org/111,https://fake.us/111
+21LABCH,Louisiana Department of Health and Hospitals,WR047,Water Resources 47,WR047 Description,G,Y,Agency 3,https://fake.org/333,https://fake.us/333
+BLMRW,Barr Lake Milton Reservoir Watershed (Colorado),EPABEACH,EPA Beach Observation,EPA Beach Description,U,Y,Agency 5,https://fake.org/555,https://fake.us/555
+ERWC,Eagle River Watershed Council (ERWC),projectId,Some Project,Some Project Description,Z,Y ,Agency 4,https://fake.org/444,https://fake.us/444
+MDNR,Missouri Dept. of Natural Resources,SAM,Surface Air Measurements,SAM Description,Z,N,Agency 2,https://fake.org/222,https://fake.us/222
+UMC,"Univ. of Missouri, Columbia",SOMETHINGELSE,SOMETHINGELSE Name,SOMETHINGELSE Description,U,Y,Agency 8,https://fake.org/888,https://fake.us/888
