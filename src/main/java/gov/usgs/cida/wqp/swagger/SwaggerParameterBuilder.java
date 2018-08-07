@@ -15,6 +15,7 @@ import com.google.common.base.Optional;
 import gov.usgs.cida.wqp.swagger.annotation.FullParameterList;
 import gov.usgs.cida.wqp.swagger.annotation.NoQueryParametersList;
 import gov.usgs.cida.wqp.swagger.annotation.ProfileParameterActivity;
+import gov.usgs.cida.wqp.swagger.annotation.ProfileParameterSummary;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.OperationBuilderPlugin;
@@ -36,6 +37,7 @@ public class SwaggerParameterBuilder implements OperationBuilderPlugin {
 		Optional<FullParameterList> fullParameterList = context.findAnnotation(FullParameterList.class);
 		Optional<ProfileParameterActivity> profileParameterActivity = context.findAnnotation(ProfileParameterActivity.class);
 		Optional<ProfileParameterResult> profileParameterResult = context.findAnnotation(ProfileParameterResult.class);
+                Optional<ProfileParameterSummary> profileParameterSummary = context.findAnnotation(ProfileParameterSummary.class);
 		Optional<PostMapping> postMapping = context.findAnnotation(PostMapping.class);
 
 		if (!noQueryParametersList.isPresent()) {
@@ -71,6 +73,7 @@ public class SwaggerParameterBuilder implements OperationBuilderPlugin {
 			parameters.add(SwaggerParameters.subjectTaxonomicName());
 			parameters.add(SwaggerParameters.within());
 		}
+                
 
 		if (profileParameterActivity.isPresent()) {
 			parameters.add(SwaggerParameters.dataProfile());
@@ -80,6 +83,20 @@ public class SwaggerParameterBuilder implements OperationBuilderPlugin {
 			parameters.add(SwaggerParameters.dataProfile());
 		}
 
+                if (profileParameterSummary.isPresent()) {
+		    parameters.add(SwaggerParameters.bBox());
+		    parameters.add(SwaggerParameters.countrycode());
+		    parameters.add(SwaggerParameters.huc());
+		    parameters.add(SwaggerParameters.lat());
+		    parameters.add(SwaggerParameters.longitude());
+		    parameters.add(SwaggerParameters.organization());
+		    parameters.add(SwaggerParameters.providers());
+		    parameters.add(SwaggerParameters.siteid());
+		    parameters.add(SwaggerParameters.siteType());
+		    parameters.add(SwaggerParameters.statecode());
+		    parameters.add(SwaggerParameters.summaryYears());
+		    parameters.add(SwaggerParameters.within());
+                }
 		if (postMapping.isPresent()) {
 			parameters.add(SwaggerParameters.postParms());
 		}

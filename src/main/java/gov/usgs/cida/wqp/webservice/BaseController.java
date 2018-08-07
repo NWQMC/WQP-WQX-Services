@@ -452,10 +452,20 @@ public abstract class BaseController {
 		case kmz:
 			return NameSpace.STATION_KML;
 		case geojson:
-			return NameSpace.SIMPLE_STATION;
+			return getGeoJsonNameSpace(getProfile());	
 		default:
 			return determineNamespaceFromProfile(getProfile());
 		}
+	}
+	
+	protected NameSpace getGeoJsonNameSpace(Profile theProfile) {
+		NameSpace theNameSpace = null;
+		if (theProfile == Profile.SIMPLE_STATION || theProfile == Profile.STATION) {
+			theNameSpace = NameSpace.SIMPLE_STATION;
+		} else if (theProfile == Profile.SUMMARY_STATION) {
+			theNameSpace = NameSpace.SUMMARY_STATION;
+		}
+		return theNameSpace;
 	}
 
 	protected NameSpace determineNamespaceFromProfile(Profile profile) {
@@ -473,6 +483,8 @@ public abstract class BaseController {
 					return NameSpace.STATION;
 				case SIMPLE_STATION:
 					return NameSpace.SIMPLE_STATION;
+				case SUMMARY_STATION:
+					return NameSpace.SUMMARY_STATION;
 				case ACTIVITY:
 					return NameSpace.ACTIVITY;
 				case ACTIVITY_ALL:

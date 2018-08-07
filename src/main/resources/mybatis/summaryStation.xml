@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="summaryStation">
+
+    <select id="select" resultType="java.util.LinkedHashMap" fetchSize="500">
+
+        SELECT
+            prime.data_source,
+            prime.organization,
+            prime.organization_name,
+            prime.site_id,
+            prime.station_name,
+            prime.site_type,
+            TO_CHAR(prime.geom.sdo_point.y,'FM90.0000000') latitude,
+            TO_CHAR(prime.geom.sdo_point.x,'FM990.0000000') longitude,
+            prime.station_type_name,
+            prime.huc_8,
+            nvl(filter.activity_count,0) activity_count,
+            nvl(filter.result_count,0) result_count,
+            state.description_with_out_country state_name,
+            county.description_wo_country_state county_name,
+	    TO_CHAR(filter.summary_past_12_months) summary_past_12_months,
+	    TO_CHAR(filter.summary_past_60_months) summary_past_60_months,
+            TO_CHAR(filter.summary_all_months) summary_all_months
+	    
+	FROM station prime
+	    
+	join (
+	    select 
+		data_source_id, 
+		station_id, 
+		activity_count, 
+		result_count, 
+		summary_past_12_months, 
+		summary_past_60_months, 
+		summary_all_months
+	    
+	    from station_sum
+	    
+	    ) filter
+	on prime.station_id = filter.station_id and
+	 prime.data_source_id = filter.data_source_id
+
+        LEFT JOIN state ON prime.data_source_id = state.data_source_id
+                      AND prime.state_code = state.code_value
+        
+        LEFT JOIN county ON prime.data_source_id = county.data_source_id
+                       AND prime.county_code = county.code_value
+
+        <include refid="dynamicWhere.baseStationWhere"/>
+            
+        ORDER BY
+            prime.data_source_id,
+            prime.organization,
+            prime.site_id
+
+    </select>
+
+    <select id="count" resultType="java.util.LinkedHashMap">
+        <include refid="station.stationCount"/>
+    </select>
+
+</mapper>

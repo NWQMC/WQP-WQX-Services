@@ -51,6 +51,7 @@ public class FilterParameters {
 	public static final String REGEX_HUC_WILDCARD_IN = "\\*";
 	public static final String REGEX_HUC_WILDCARD_OUT = "";
 	public static final String REGEX_DATA_PROFILE = String.join("|", Profile.getValues());
+	public static final String REGEX_SUMMARY_YEARS = "1|5|all";
 
 
 	private String activity;
@@ -104,6 +105,9 @@ public class FilterParameters {
 
 	@Pattern(regexp=REGEX_MIMETYPES, message="The value of mimeType=${validatedValue} must match the format {regexp}")
 	private String mimeType;
+	
+	@Pattern(regexp=REGEX_SUMMARY_YEARS, message="The value of summaryYears=${validatedValue} must match the format {regexp}")
+	private String summaryYears;
 
 	@Pattern(regexp=REGEX_POSITIVE_INT, message="The value of minactivities=${validatedValue} must match the format {regexp}")
 	private String minactivities;
@@ -380,6 +384,12 @@ public class FilterParameters {
 	public void setSubjectTaxonomicName(List<String> subjectTaxonomicName) {
 		this.subjectTaxonomicName = subjectTaxonomicName;
 	}
+	public String getSummaryYears() {
+		return summaryYears;
+	}
+	public void setSummaryYears(String summaryYears) {
+		this.summaryYears = summaryYears;
+	}
 	public String getWithin() {
 		return within;
 	}
@@ -432,6 +442,7 @@ public class FilterParameters {
 				&& StringUtils.isBlank(startDateLo)
 				&& (null == statecode || statecode.isEmpty())
 				&& (null == subjectTaxonomicName || subjectTaxonomicName.isEmpty())
+				&& StringUtils.isBlank(summaryYears)
 				&& StringUtils.isBlank(within)
 				&& StringUtils.isBlank(zip);
 	}

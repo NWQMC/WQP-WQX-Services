@@ -9,6 +9,7 @@ public enum Profile {
 	ORGANIZATION ("organization", "organization"),
 	STATION ("station", "station"),
 	SIMPLE_STATION ("simplestation", "simplestation"),
+	SUMMARY_STATION ("summarystation","summarystation"),
 	BIOLOGICAL ("biological", "biologicalresult"),
 	PC_RESULT ("pcresult", "result"),
 	ACTIVITY ("activity", "activity"),

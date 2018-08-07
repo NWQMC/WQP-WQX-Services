@@ -12,6 +12,8 @@ public enum NameSpace {
 
 	STATION ("station", null),
 	SIMPLE_STATION ("simpleStation", null),
+	SUMMARY_STATION ("summaryStation", null),
+	
 	STATION_KML ("stationKml", null),
 
 	PROJECT ("project", null),

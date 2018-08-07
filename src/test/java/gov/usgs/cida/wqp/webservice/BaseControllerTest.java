@@ -852,9 +852,13 @@ public class BaseControllerTest {
 
 		TestBaseController.setMimeType(MimeType.kmz);
 		assertEquals(NameSpace.STATION_KML, testController.determineNamespace());
-
+		
 		TestBaseController.setMimeType(MimeType.geojson);
+		TestBaseController.setProfile(Profile.SIMPLE_STATION);
 		assertEquals(NameSpace.SIMPLE_STATION, testController.determineNamespace());
+		
+		TestBaseController.setProfile(Profile.SUMMARY_STATION);
+		assertEquals(NameSpace.SUMMARY_STATION, testController.determineNamespace());
 
 		TestBaseController.setMimeType(MimeType.csv);
 		TestBaseController.setProfile(Profile.BIOLOGICAL);
@@ -887,6 +891,15 @@ public class BaseControllerTest {
 		TestBaseController.setProfile(null);
 		assertNull(testController.determineNamespace());
 	}
+	
+	@Test
+	public void getGeoJsonNameSpaceTest() {
+		assertEquals(NameSpace.SUMMARY_STATION, testController.getGeoJsonNameSpace(Profile.SUMMARY_STATION));
+		
+		assertEquals(NameSpace.SIMPLE_STATION, testController.getGeoJsonNameSpace(Profile.SIMPLE_STATION));
+		
+		assertNull(testController.getGeoJsonNameSpace(null));
+	}
 
 	@Test
 	public void determineNamespaceFromProfileTest() {
@@ -899,6 +912,8 @@ public class BaseControllerTest {
 		assertEquals(NameSpace.SIMPLE_STATION, testController.determineNamespaceFromProfile(Profile.SIMPLE_STATION));
 
 		assertEquals(NameSpace.STATION, testController.determineNamespaceFromProfile(Profile.STATION));
+		
+		assertEquals(NameSpace.SUMMARY_STATION, testController.determineNamespaceFromProfile(Profile.SUMMARY_STATION));
 
 		assertEquals(NameSpace.ACTIVITY, testController.determineNamespaceFromProfile(Profile.ACTIVITY));
 

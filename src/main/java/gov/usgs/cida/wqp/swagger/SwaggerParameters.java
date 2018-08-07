@@ -343,6 +343,17 @@ public class SwaggerParameters {
 				.allowMultiple(true)
 				.build();
 	}
+	
+	public static Parameter summaryYears() {
+		return new ParameterBuilder()
+				.name("summaryYears")
+				.description("Select summary data for 1, 5, or all years.")
+				.modelRef(new ModelRef("string"))
+				.parameterType("query")
+				.required(false)
+				.allowableValues(new AllowableListValues(Arrays.asList("1", "5", "all"), "LIST"))
+				.build();
+	}
 
 	public static Parameter within() {
 		return new ParameterBuilder()
