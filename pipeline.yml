@@ -38,4 +38,4 @@ urlRules:
       - /Result/*
       - /Station/*
       - /Activity/*
-    priority: 302
+    priority: 320
