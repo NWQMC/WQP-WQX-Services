@@ -79,11 +79,13 @@
 
     <sql id="activityProjects">
         (prime.data_source_id,project_id) in
-            (select data_source_id,project_dim_value
+            (select prime.data_source_id,pd2.project_dim_value
                from project_dim
-              where project_dim.data_source_id = prime.data_source_id
-               and project_dim.project_dim_value = prime.project_id
-               and code_value in <foreach item="i" collection="project" open="(" separator="," close=")">#{i}</foreach>)
+                 inner join project_dim pd1 on (pd1.data_source_id = prime.data_source_id)
+	             inner join project_dim pd2 on (pd2.project_dim_value = prime.project_id)
+	
+              where pd1.code_value in <foreach item="i" collection="project" open="(" separator="," close=")">#{i}</foreach>
+                and pd2.code_value in <foreach item="i" collection="project" open="(" separator="," close=")">#{i}</foreach>)
     </sql>
 
     <sql id="project">
