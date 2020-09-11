@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased](https://github.com/NWQMC/WQP-WQX-Services/compare/WQP-WQX-Services/compare/WQP-WQX-Services-1.6.0...master)
 ## Changed
 -   Performance improvement on searches when specifying project
+-   Increase work_mem on result queries to reduce timeouts
 
 ## [1.6.0](https://github.com/NWQMC/WQP-WQX-Services/compare/WQP-WQX-Services/compare/WQP-WQX-Services-1.6.0...master) - 2020-07-13
 ### Added
