@@ -21,11 +21,11 @@
     </sql>
 
     <select id="select" resultType="java.util.LinkedHashMap" fetchSize="500">
-        set work_mem='32MB';
+
         <include refid="result.pre"/>
         select <include refid="resultPhysChem.baseColumns"/>
         <include refid="result.post"/>
-        ; reset work_mem;
+
     </select>
 
     <select id="count" resultType="java.util.LinkedHashMap">

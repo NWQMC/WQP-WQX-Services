@@ -76,6 +76,7 @@
     </sql>
 
     <sql id="pre">
+        set work_mem='32MB';
         <if test="minresults != null">
             select * from (
         </if>
@@ -102,6 +103,7 @@
                      prime.activity,
                      prime.result_id
         </if>
+        ; reset work_mem;
     </sql>
 
     <sql id="resultCount">
