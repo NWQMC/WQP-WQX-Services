@@ -103,6 +103,7 @@
                      prime.activity,
                      prime.result_id
         </if>
+        ; reset work_mem;
     </sql>
 
     <sql id="resultCount">
