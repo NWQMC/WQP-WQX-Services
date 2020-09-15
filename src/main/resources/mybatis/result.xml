@@ -76,7 +76,7 @@
     </sql>
 
     <sql id="pre">
-        set work_mem='32MB';
+        set work_mem='64MB';
         <if test="minresults != null">
             select * from (
         </if>
